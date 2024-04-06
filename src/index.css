@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  /* montserrat */
+  font-family: 'Montserrat', sans-serif;
+  /* border: 1px solid red; */
+}
+
+.bg-home {
+  background: linear-gradient(180deg, #164033 0%, #000C2F 63.16%);
+}
+

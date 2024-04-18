@@ -7,7 +7,7 @@ import cloud from '../assets/images/cloud-bg.png'
 import pseudo from '../assets/images/pseudo.png'
 import CarouselCustom from '../components/Carousel.jsx';
 
-const IndexMain = () => {
+const IndexOld = () => {
 
     const spline = useRef();
 
@@ -93,4 +93,4 @@ const IndexMain = () => {
     )
 }
 
-export default IndexMain
+export default IndexOld

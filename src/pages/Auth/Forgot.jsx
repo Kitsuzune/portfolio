@@ -1,0 +1,86 @@
+import React, { useState } from 'react';
+import { Button, Col, Container, Modal, Row } from 'react-bootstrap';
+import Lottie from 'react-lottie';
+import loginAnimation from '../../assets/lotties/login.json';
+import useWindowSize from '../../hooks/useWindowsSize';
+import useSignIn from 'react-auth-kit/hooks/useSignIn';
+import { login } from '../../api/index'; 
+import { useNavigate } from 'react-router-dom';
+
+const ForgotPassword = () => {
+    const signIn = useSignIn();
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [error, setError] = useState('');
+    const [showModal, setShowModal] = useState(false);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            console.log('Email:', email);
+        } catch (err) {
+            setError(err.response.data.message);
+            setShowModal(true);
+        }
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setError('');
+    };
+
+    return (
+        <div className="bg-black min-h-screen d-flex align-items-center justify-content-center">
+            <Container fluid style={{ maxWidth: "90%" }}>
+                <Row>
+                    <Col md={12} className="d-flex justify-content-center align-items-center">
+                        <form onSubmit={handleSubmit} className='p-4 p-md-5 border rounded-2xl w-100' style={{ maxWidth: "400px" }}>
+                            <h2 className="text-white">Forgot Password ?</h2>
+                            <p className="text-white mb-4">Please Enter Your Email</p>
+
+                            <div className="mb-4">
+                                <label className="text-white" htmlFor="username">Email</label>
+                                <input
+                                    type="text"
+                                    id="email"
+                                    placeholder="Enter email"
+                                    className="w-full px-3 py-2 mt-3 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                className="w-full bg-[#DB4444] text-white py-2 rounded-lg hover:bg-purple-700 transition duration-300 mb-3"
+                            >
+                                Reset Password
+                            </button>
+                         
+                            <div className="text-white text-center mt-3">
+                                <p className="text-sm mt-2">
+                                    <span href="#" className="text-[#DB4444]">Terms & Conditions</span> |
+                                    <span href="#" className="text-[#DB4444]"> Support</span> |
+                                    <span href="#" className="text-[#DB4444]"> Care</span>
+                                </p>
+                            </div>
+                        </form>
+                    </Col>
+                </Row>
+            </Container>
+
+            <Modal centered show={showModal} onHide={handleCloseModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Error</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>{error}</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleCloseModal}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+        </div>
+    );
+};
+
+export default ForgotPassword;

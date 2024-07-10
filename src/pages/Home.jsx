@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Image, Row } from "react-bootstrap";
 import Navbar from "../components/Navbar";
 import Carousel from "react-multi-carousel";
@@ -8,73 +8,27 @@ import ReactStars from "react-rating-stars-component";
 import { ScrollMenu } from "react-horizontal-scrolling-menu";
 import "react-horizontal-scrolling-menu/dist/styles.css";
 import { Icon } from '@iconify/react/dist/iconify.js'
+import { getProduct } from "../api";
+import { useNavigate } from "react-router-dom";
+
 
 const Home = () => {
-  const products = [
-    {
-      name: "Product 1",
-      price: "Rp.90000",
-      image:
-        "https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1",
-      rating: 0,
-    },
-    {
-      name: "Product 2",
-      price: "Rp.80000",
-      image:
-        "https://images.unsplash.com/photo-1550167164-1b67c2be3973?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format",
-      rating: 4.5,
-    },
-    {
-      name: "Product 3",
-      price: "Rp.70000",
-      image:
-        "https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1",
-      rating: 3.5,
-    },
-    {
-      name: "Product 3",
-      price: "Rp.70000",
-      image:
-        "https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1",
-      rating: 3.5,
-    },
-    {
-      name: "Product 3",
-      price: "Rp.70000",
-      image:
-        "https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1",
-      rating: 3.5,
-    },
-    {
-      name: "Product 3",
-      price: "Rp.70000",
-      image:
-        "https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1",
-      rating: 3.5,
-    },
-    {
-      name: "Product 3",
-      price: "Rp.70000",
-      image:
-        "https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1",
-      rating: 3.5,
-    },
-    {
-      name: "Product 3",
-      price: "Rp.70000",
-      image:
-        "https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1",
-      rating: 3.5,
-    },
-    {
-      name: "Product 3",
-      price: "Rp.70000",
-      image:
-        "https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1",
-      rating: 3.5,
-    },
-  ];
+  const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await getProduct(1, 10);
+        setProducts(response.data.products);
+        console.log(response.data.products);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   return (
     <Container fluid className="bg-[#0F0F0F] m-0 px-0">
@@ -155,7 +109,7 @@ const Home = () => {
               <Card className="mx-4" style={{ border: 0 }} key={index}>
                 <Row className="bg-white rounded-t-lg">
                   <img
-                    src="https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1"
+                    src={product.productImage}
                     style={{
                       width: 200,
                       height: 200,
@@ -164,10 +118,10 @@ const Home = () => {
                 </Row>
                 <Row className="bg-black w-[200px] py-2 rounded-b-lg">
                   <span className="text-white text-[14px] font-sans">
-                    Product Name
+                    {product.name}
                   </span>
                   <span className="text-[#DB4444] text-[14px] font-sans">
-                    Rp.90000
+                    Rp.{product.price}
                   </span>
                   <div className="flex w-auto">
                     <ReactStars
@@ -192,7 +146,7 @@ const Home = () => {
 
         <Row>
           <div className="flex justify-center w-full mt-4">
-            <button className="bg-[#DB4444] text-white text-[18px] font-sans px-20 h-[70px] rounded-[4px]">
+            <button className="bg-[#DB4444] text-white text-[18px] font-sans px-20 h-[70px] rounded-[4px]" onClick={() => navigate('/market')}>
               View All Product
             </button>
           </div>

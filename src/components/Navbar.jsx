@@ -13,6 +13,7 @@ function Navbar() {
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
     const signOut = useSignOut()
     const navigate = useNavigate();
+    const authUser = useAuthUser();
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -65,8 +66,8 @@ function Navbar() {
                         )}
 
                         {isAuthenticated && (
-                            <Link to="/account" className='text-white text-[16px]' style={{ textDecoration: 'none' }}>
-                                Account
+                            <Link to="/market" className='text-white text-[16px]' style={{ textDecoration: 'none' }}>
+                                Store
                             </Link>
                         )}
                     </Col>
@@ -80,7 +81,7 @@ function Navbar() {
                         </div>
 
                         <Icon icon="solar:heart-linear" className='text-white text-[35px] mr-5' />
-                        <Icon icon="mdi-light:cart" className='text-white text-[35px]' />
+                        <Icon icon="mdi-light:cart" className='text-white text-[35px] cursor-pointer' onClick={() => navigate('/cart')} />
                         {isAuthenticated && (
                             <div className='position-relative'>
                                 <Icon
@@ -98,10 +99,14 @@ function Navbar() {
                                             <Icon icon="mdi:clipboard-list" className='mr-2' />
                                             My Order
                                         </Link>
-                                        <Link to="/admin" className='flex items-center px-4 py-2 text-decoration-none text-white hover:bg-white hover:bg-opacity-10'>
-                                            <Icon icon="mdi:shield-account" className='mr-2' />
-                                            Admin
-                                        </Link>
+                                        {
+                                            authUser.adminToken && (
+                                                <Link to="/admin" className='flex items-center px-4 py-2 text-decoration-none text-white hover:bg-white hover:bg-opacity-10'>
+                                                    <Icon icon="mdi:shield-account" className='mr-2' />
+                                                    Admin
+                                                </Link>
+                                            )
+                                        }
                                         <button onClick={() => signOutRedirect()} className='flex items-center px-4 py-2 text-decoration-none w-full text-white hover:bg-white hover:bg-opacity-10'>
                                             <Icon icon="mdi:logout" className='mr-2' />
                                             Logout

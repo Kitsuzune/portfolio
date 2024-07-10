@@ -28,9 +28,9 @@ const Login = () => {
                 userState: {
                     username: response.data.user.username,
                     email: response.data.user.email,
+                    adminToken: response.data.adminToken ? response.data.adminToken : null,
                 }
             });
-            console.log("ini bisa");
             navigate('/');
         } catch (err) {
             setError(err.response.data.message);
@@ -39,8 +39,8 @@ const Login = () => {
     };
 
     const handleCloseModal = () => {
-        setShowModal(false); // Tutup modal
-        setError(''); // Reset pesan error setelah modal ditutup
+        setShowModal(false);
+        setError(''); 
     };
 
     const defaultOptions = {

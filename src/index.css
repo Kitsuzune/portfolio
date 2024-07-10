@@ -15,6 +15,14 @@
   background: linear-gradient(180deg, #164033 0%, #000C2F 63.16%);
 }
 
+.custom-dropdown-menu {
+  position: absolute;
+  z-index: 1000;
+  will-change: transform;
+  top: 0;
+  left: 0;
+}
+
 html {
   overflow: scroll;
   overflow-x: hidden;
@@ -27,5 +35,6 @@ html {
 ::-webkit-scrollbar-thumb {
   background: #DB4444;
 }
+
 
 

@@ -32,6 +32,27 @@ export const updateProfilePicture = (formData) => API.put("/profile/picture", fo
 
 
 
+// Product
+export const getProduct = (page, limit) => API.get("/product", { params: { page, limit } });
+export const getProductDetail = (id) => API.get(`/product/${id}`);
+export const addProduct = (formData) => API.post("/product/add", formData);
+export const updateProduct = (id, formData) => API.patch(`/product/update/${id}`, formData, {
+    headers: {
+        'Content-Type': 'multipart/form-data',
+    },
+});
+export const deleteProduct = (id) => API.delete(`/product/delete/${id}`);
+
+
+// Cart
+export const getCart = () => API.get("/cart");
+export const addToCart = (formData) => API.post("/cart/add", formData);
+export const plusCart = (id) => API.post(`/cart/plus/${id}`);
+export const minusCart = (id) => API.post(`/cart/minus/${id}`);
+
+// Transaction
+export const checkout = (formData) => API.post("/transaction/create", formData);
+
 // export const register = (formData) => API.post("/api/register", formData);
 // export const logOut = () => API.delete("/api/user/logout");
 

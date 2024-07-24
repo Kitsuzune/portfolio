@@ -2,40 +2,41 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Table, Button, Container, Row, Pagination } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import DefaultLayout from '../../AdminLayout';
-import { getProduct, deleteProduct } from '../../../../api';
+import { getTransactionAdmin, deleteProduct } from '../../../../api';
 import { Icon } from '@iconify/react/dist/iconify.js';
 
-const ProductAdmin = () => {
+const AdminOrder = () => {
     const [products, setProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const pageSize = 10;
 
     useEffect(() => {
-        fetchProducts(currentPage);
+        fetchTransaction(currentPage);
     }, [currentPage]);
 
-    const fetchProducts = async (page) => {
+    const fetchTransaction = async (page) => {
         try {
-            const response = await getProduct(page, pageSize);
-            setProducts(response.data.products);
+            const response = await getTransactionAdmin(page, pageSize);
+            setProducts(response.data.transactions);
             setTotalPages(response.data.totalPages);
         } catch (error) {
             console.error('Failed to fetch products', error);
         }
     };
 
-    const handleDeleteProduct = async (id) => {
-        try {
-            await deleteProduct(id);
-            fetchProducts(currentPage);
-        } catch (error) {
-            console.error('Failed to delete product', error);
-        }
-    };
-
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
+    };
+
+    const formatProductList = (productList) => {
+        try {
+            const products = JSON.parse(productList);
+            return products.map(p => `${p.productName} x${p.quantity}`).join(', ');
+        } catch (error) {
+            console.error('Failed to parse product list', error);
+            return productList;
+        }
     };
 
     return (
@@ -44,11 +45,8 @@ const ProductAdmin = () => {
                 <Row className="mt-5 mx-3 bg-white text-black rounded-lg p-5">
                     <div className='w-full'>
                         <div className="d-flex justify-content-between">
-                            <span className="text-[40px]">Products</span>
+                            <span className="text-[40px]">Orders</span>
                             <div className="flex gap-3 align-items-center justify-end">
-                                <Button as={Link} to="/admin/products/add" variant="dark" className="bg-black text-white px-4 py-3 rounded-lg">
-                                    Add Product
-                                </Button>
                                 <div>
                                     <input type="text" placeholder="Search" className="px-4 py-3 rounded-lg " />
                                 </div>
@@ -60,41 +58,33 @@ const ProductAdmin = () => {
                         <Table striped borderless hover responsive>
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Product Code</th>
+                                    <th>Order By</th>
+                                    <th>Order List</th>
                                     <th>Price</th>
-                                    <th>Stock</th>
-                                    <th>Actions</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {products.map(product => (
                                     <tr key={product.id}>
                                         <td>
-                                            <div className="flex gap-3 align-items-center h-[60px]">
-                                                <img src={product.productImage} alt={product.name} style={{ width: '50px', height: '50px' }} />
-                                                <span>{product.name}</span>
+                                            <div className="flex align-items-center h-[60px]">
+                                                <span>{product.username}</span>
                                             </div>
                                         </td>
                                         <td>
                                             <div className="flex align-items-center h-[60px]">
-                                                <span>{product.id}</span>
+                                                <span>{formatProductList(product.productList)}</span>
                                             </div>
                                         </td>
                                         <td>
                                             <div className="flex align-items-center h-[60px]">
-                                                <span>{product.price}</span>
+                                                <span>Rp. {product.total}</span>
                                             </div>
                                         </td>
                                         <td>
                                             <div className="flex align-items-center h-[60px]">
-                                                <span>{product.status === true ? 'In Stock' : 'Out of Stock'}</span>
-                                            </div>
-                                        </td>
-                                        <td className=''>
-                                            <div className="flex align-items-center gap-2 h-[60px]">
-                                                <button onClick={() => handleDeleteProduct(product.id)} className="btn btn-danger">Delete</button>
-                                                <Link to={`/admin/products/${product.id}`} className="btn btn-primary">Edit</Link>
+                                                <span>{product.status}</span>
                                             </div>
                                         </td>
                                     </tr>
@@ -104,7 +94,7 @@ const ProductAdmin = () => {
                     </div>
 
                     <div className="d-flex justify-content-center mt-4">
-                        <Pagination> 
+                        <Pagination>
                             {[...Array(totalPages)].map((_, idx) => (
                                 <Pagination.Item key={idx + 1} active={idx + 1 === currentPage} onClick={() => handlePageChange(idx + 1)}>
                                     {idx + 1}
@@ -118,4 +108,4 @@ const ProductAdmin = () => {
     );
 };
 
-export default ProductAdmin;
+export default AdminOrder;

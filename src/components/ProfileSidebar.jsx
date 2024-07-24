@@ -32,10 +32,10 @@ const ProfileSidebar = () => {
                         Transactions
                     </Link>
                     <Link to="/wishlist" className={`block mt-2 text-sm text-decoration-none ${isActive('/wishlist')}`}>
-                        Wishlist
+                        Favorites / Wishlist
                     </Link>
-                    <Link to="/favorites" className={`block mt-2 text-sm text-decoration-none ${isActive('/favorites')}`}>
-                        Favorites
+                    <Link to="/cart" className={`block mt-2 text-sm text-decoration-none ${isActive('/favorites')}`}>
+                        Cart
                     </Link>
                 </div>
             </div>

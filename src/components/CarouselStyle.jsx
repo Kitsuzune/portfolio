@@ -2,7 +2,7 @@ import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-const CarouselStyle = ({ image, style = 'Classic' }) => {
+const CarouselStyle = ({ images, style = 'Classic' }) => {
   const defaultStyle = {
     className: "h-[400px] mx-16 rounded-3xl",
     draggable: true,
@@ -33,7 +33,14 @@ const CarouselStyle = ({ image, style = 'Classic' }) => {
   return (
     <div className='w-full'>
       <Carousel {...carouselStyle}>
-        <img src={image} alt='placeholder'/>
+        {images.map((image, index) => (
+          <img
+            key={index}
+            src={image}
+            alt={`banner-${index}`}
+            className='w-full h-full object-cover'
+          />
+        ))}
       </Carousel>
     </div>
   );

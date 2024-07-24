@@ -17,6 +17,10 @@ import Dashboard from "./pages/Admin/Menu/Dashboard/Dashboard";
 import ProductAdmin from "./pages/Admin/Menu/Product/Product";
 import EditProduct from "./pages/Admin/Menu/Product/EditProduct";
 import Order from "./pages/User/Menu/Order";
+import AdminOrder from "./pages/Admin/Menu/Orders/Order";
+import WishList from "./pages/User/Menu/WishList";
+import AdminBanner from "./pages/Admin/Menu/Banner/Banner";
+import EditBanner from "./pages/Admin/Menu/Banner/EditBanner";
 
 function App() {
   const location = useLocation();
@@ -48,12 +52,16 @@ function App() {
         <Route path="/product/:id" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/orders" element={<Order />} />
+        <Route path="/wishlist" element={<WishList />} />
 
         {/* Admin */}
         <Route path="/admin/dashboard" element={<Dashboard />} />
         <Route path="/admin/products" element={<ProductAdmin />} />
         <Route path="/admin/products/add" element={<EditProduct />} />
         <Route path="/admin/products/:productId" element={<EditProduct />} />
+        <Route path="/admin/orders" element={<AdminOrder />} />
+        <Route path="/admin/banner" element={<AdminBanner />} />
+        <Route path="/admin/banner/:bannerId" element={<EditBanner />} />
 
         {/* Unused */}
         {/* <Route path='/old' element={<IndexOld />} /> */}

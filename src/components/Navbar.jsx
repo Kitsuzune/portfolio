@@ -73,14 +73,14 @@ function Navbar() {
                     </Col>
 
                     <Col md={4} className='d-none d-md-flex justify-content-end align-items-center'>
-                        <div className='mr-5 bg-white w-[60%] rounded-[4px] h-full p-2'>
+                        {/* <div className='mr-5 bg-white w-[60%] rounded-[4px] h-full p-2'>
                             <div className='d-flex justify-content-center align-items-center h-full mx-2'>
                                 <input type='text' placeholder='What are you looking for?' className='bg-transparent border-0 w-full h-full outline-none' />
                                 <Icon icon="iconamoon:search-thin" className='text-black text-[35px]' />
                             </div>
-                        </div>
+                        </div> */}
 
-                        <Icon icon="solar:heart-linear" className='text-white text-[35px] mr-5' />
+                        <Icon icon="solar:heart-linear" className='text-white text-[35px] mr-5 cursor-pointer' onClick={() => navigate('/wishlist')} />
                         <Icon icon="mdi-light:cart" className='text-white text-[35px] cursor-pointer' onClick={() => navigate('/cart')} />
                         {isAuthenticated && (
                             <div className='position-relative'>
@@ -101,7 +101,7 @@ function Navbar() {
                                         </Link>
                                         {
                                             authUser.adminToken && (
-                                                <Link to="/admin" className='flex items-center px-4 py-2 text-decoration-none text-white hover:bg-white hover:bg-opacity-10'>
+                                                <Link to="/admin/dashboard" className='flex items-center px-4 py-2 text-decoration-none text-white hover:bg-white hover:bg-opacity-10'>
                                                     <Icon icon="mdi:shield-account" className='mr-2' />
                                                     Admin
                                                 </Link>

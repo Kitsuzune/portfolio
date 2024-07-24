@@ -48,6 +48,19 @@ const DefaultLayout = ({ children }) => {
                     </Link>
 
                     <Link
+                        to="/admin/banner"
+                        className={`block py-2 my-2 px-4 rounded hover:bg-gray-700 text-decoration-none ${isActive('/admin/banner')}`}
+                    >
+                        <div className="flex items-center">
+                            <Icon
+                                icon="majesticons:image"
+                                className="text-white text-[24px]"
+                            />
+                            <span className="ml-2">Banner</span>
+                        </div>
+                    </Link>
+
+                    <Link
                         to="/admin/products"
                         className={`block py-2 my-2 px-4 rounded hover:bg-gray-700 text-decoration-none ${isActive('/admin/products')}`}
                     >
@@ -100,6 +113,19 @@ const DefaultLayout = ({ children }) => {
                             <span className="ml-2">Logout</span>
                         </div>
                     </Link> */}
+
+                    <Link
+                        to="/"
+                        className="block py-2 my-2 px-4 rounded hover:bg-gray-700 text-white text-decoration-none"
+                    >
+                        <div className="flex items-center">
+                            <Icon
+                                icon="material-symbols:digital-out-of-home-outline"
+                                className="text-white text-[24px]"
+                            />
+                            <span className="ml-2">Back To Web</span>
+                        </div>
+                    </Link>
 
                     <button
                         onClick={() => {

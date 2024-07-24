@@ -33,7 +33,8 @@ export const updateProfilePicture = (formData) => API.put("/profile/picture", fo
 
 
 // Product
-export const getProduct = (page, limit) => API.get("/product", { params: { page, limit } });
+export const getProduct = (page, limit, search) => API.get("/product", { params: { page, limit, search } });
+export const getProductByBestSeller = () => API.get("/product/sort/best-seller");
 export const getProductDetail = (id) => API.get(`/product/${id}`);
 export const addProduct = (formData) => API.post("/product/add", formData);
 export const updateProduct = (id, formData) => API.patch(`/product/update/${id}`, formData, {
@@ -52,6 +53,37 @@ export const minusCart = (id) => API.post(`/cart/minus/${id}`);
 
 // Transaction
 export const checkout = (formData) => API.post("/transaction/create", formData);
+export const repay = (formData) => API.post("/transaction/midNotification", formData);
+export const updateTransaction = (formData) => API.post("/transaction/updateStatus", formData);
+export const getTransactionAdmin = (page, limit) => API.get("/transaction/AdminList", { params: { page, limit } });
+export const getTransaction = (page, limit) => API.get("/transaction/listAllByUser", { params: { page, limit } });
+
+// Wishlist
+export const getWishlist = (page, limit) => API.get("/favourite", { params: { page, limit } });
+export const addToWishlist = (formData) => API.post("/favourite/add", formData);
+export const deleteWishlist = (id) => API.delete(`/favourite/delete/${id}`);
+
+// Review
+export const getReview = (id) => API.get(`/review/${id}`);
+export const addReview = (formData) => API.post("/review/add", formData);
+
+// Banner
+export const getBanner = () => API.get("/banner");
+export const getThisMonthBanner = () => API.get("/banner/v1/get-thisMonth");
+export const getStoreBanner = () => API.get("/banner/v1/get-store");
+export const getHomeCarousel = () => API.get("/banner/v1/get-homeCarousell");
+export const getExploreProduct = () => API.get("/banner/v1/get-exploreProduct");
+export const getNewArrival01 = () => API.get("/banner/v1/get-newArrival1");
+export const getNewArrival02 = () => API.get("/banner/v1/get-newArrival2");
+export const getNewArrival03 = () => API.get("/banner/v1/get-newArrival3");
+export const getNewArrival04 = () => API.get("/banner/v1/get-newArrival4");
+export const getBannerDetail = (id) => API.get(`/banner/${id}`);
+export const editBanner = (id, formData) => API.post(`/banner/update/${id}`, formData, {
+    headers: {
+        'Content-Type': 'multipart/form-data',
+    },
+});
+
 
 // export const register = (formData) => API.post("/api/register", formData);
 // export const logOut = () => API.delete("/api/user/logout");

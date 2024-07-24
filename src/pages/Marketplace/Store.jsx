@@ -4,10 +4,11 @@ import ReactStars from 'react-rating-stars-component';
 import Pagination from '../../components/Pagination';
 import Filter from '../../components/Filter';
 import { useNavigate } from 'react-router-dom';
-import { getProduct } from '../../api'; // Import API function
+import { getProduct } from '../../api';
+import NumberFormatter from '../../hooks/numberFormatter';
 
 const Store = () => {
-    const itemsPerPage = 8; // Change this value based on how many items you want per page
+    const itemsPerPage = 8;
     const [currentPage, setCurrentPage] = useState(1);
     const [sortOption, setSortOption] = useState('lastUpdate');
     const [sortOrder, setSortOrder] = useState('asc');
@@ -19,7 +20,7 @@ const Store = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await getProduct(currentPage, itemsPerPage);
+                const response = await getProduct(currentPage, itemsPerPage, searchTerm);
                 const products = response.data.products;
                 setSortedProducts(products);
                 setTotalPages(response.data.totalPages);
@@ -92,11 +93,13 @@ const Store = () => {
                                         />
                                     </Row>
                                     <Row className="bg-black w-[200px] py-2">
-                                        <span className="text-white text-[14px] font-sans">
-                                            {product.name}
+                                        <span className="text-white text-[14px]">
+                                            {product.name.length > 20
+                                                ? product.name.substring(0, 20) + '...'
+                                                : product.name}
                                         </span>
                                         <span className="text-[#DB4444] text-[14px] font-sans">
-                                            Rp.{product.price}
+                                            Rp. <NumberFormatter number={product.price} />
                                         </span>
                                         <div className="flex w-auto">
                                             <ReactStars

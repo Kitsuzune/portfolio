@@ -8,7 +8,7 @@ import Filter from '../../components/Filter';
 import Countdown from 'react-countdown';
 
 const FlashSale = () => {
-    const itemsPerPage = 8; // Change this value based on how many items you want per page
+    const itemsPerPage = 12; // Change this value based on how many items you want per page
     const [currentPage, setCurrentPage] = useState(1);
     const [sortOption, setSortOption] = useState('lastUpdate');
     const [sortOrder, setSortOrder] = useState('asc');

@@ -8,13 +8,32 @@ import ReactStars from "react-rating-stars-component";
 import { ScrollMenu } from "react-horizontal-scrolling-menu";
 import "react-horizontal-scrolling-menu/dist/styles.css";
 import { Icon } from '@iconify/react/dist/iconify.js'
-import { getProduct } from "../api";
 import { useNavigate } from "react-router-dom";
+import NumberFormatter from "../hooks/numberFormatter";
+import {
+  getProduct,
+  getProductByBestSeller,
+  getThisMonthBanner,
+  getHomeCarousel,
+  getExploreProduct,
+  getNewArrival01,
+  getNewArrival02,
+  getNewArrival03,
+  getNewArrival04,
+} from "../api";
 
 
 const Home = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
+  const [bestSellingProducts, setBestSellingProducts] = useState([]);
+  const [thisMonthBanner, setThisMonthBanner] = useState([]);
+  const [homeCarousel, setHomeCarousel] = useState([]);
+  const [exploreProduct, setExploreProduct] = useState([]);
+  const [newArrival01, setNewArrival01] = useState([]);
+  const [newArrival02, setNewArrival02] = useState([]);
+  const [newArrival03, setNewArrival03] = useState([]);
+  const [newArrival04, setNewArrival04] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -30,10 +49,56 @@ const Home = () => {
     fetchProducts();
   }, []);
 
+  useEffect(() => {
+    const fetchBestSellingProducts = async () => {
+      try {
+        const response = await getProductByBestSeller();
+        setBestSellingProducts(response.data.products);
+        console.log(response.data.products);
+      } catch (error) {
+        console.error('Error fetching best selling products:', error);
+      }
+    };
+
+    fetchBestSellingProducts();
+  }, []);
+
+  useEffect(() => {
+    const fetchAllBanners = async () => {
+      try {
+        const thisMonthBannerResponse = await getThisMonthBanner();
+        setThisMonthBanner(thisMonthBannerResponse.data.banner);
+        const homeCarouselResponse = await getHomeCarousel();
+        setHomeCarousel(homeCarouselResponse.data.banners);
+        console.log(homeCarouselResponse.data.banners.image);
+        const exploreProductResponse = await getExploreProduct();
+        setExploreProduct(exploreProductResponse.data.banner);
+        const newArrival01Response = await getNewArrival01();
+        setNewArrival01(newArrival01Response.data.banner);
+        const newArrival02Response = await getNewArrival02();
+        setNewArrival02(newArrival02Response.data.banner);
+        const newArrival03Response = await getNewArrival03();
+        setNewArrival03(newArrival03Response.data.banner);
+        const newArrival04Response = await getNewArrival04();
+        setNewArrival04(newArrival04Response.data.banner);
+      } catch (error) {
+        console.error('Error fetching banners:', error);
+      }
+    }
+
+    fetchAllBanners();
+  }, []);
+
   return (
     <Container fluid className="bg-[#0F0F0F] m-0 px-0">
       <Row fluid className="pb-10">
-        <CarouselStyle image="https://images.unsplash.com/photo-1550167164-1b67c2be3973?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format" />
+        {/* <CarouselStyle image="https://images.unsplash.com/photo-1550167164-1b67c2be3973?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format" /> */}
+        <Row fluid className="pb-10">
+          {homeCarousel.image && (
+            <CarouselStyle images={homeCarousel.image} />
+          )}
+        </Row>
+
       </Row>
 
       {/* // Flash Sale */}
@@ -118,10 +183,12 @@ const Home = () => {
                 </Row>
                 <Row className="bg-black w-[200px] py-2 rounded-b-lg">
                   <span className="text-white text-[14px] font-sans">
-                    {product.name}
+                    {product.name.length > 20
+                      ? product.name.substring(0, 20) + '...'
+                      : product.name}
                   </span>
                   <span className="text-[#DB4444] text-[14px] font-sans">
-                    Rp.{product.price}
+                    Rp. <NumberFormatter number={product.price} />
                   </span>
                   <div className="flex w-auto">
                     <ReactStars
@@ -133,9 +200,10 @@ const Home = () => {
                       halfIcon={<i className="fa fa-star-half-alt"></i>}
                       fullIcon={<i className="fa fa-star"></i>}
                       activeColor="#ffd700"
+                      value={product.rating}
                     />
                     <span className="text-white text-[18px] font-sans flex items-center">
-                      (0)
+                      ({product.rating})
                     </span>
                   </div>
                 </Row>
@@ -158,7 +226,7 @@ const Home = () => {
       <Row fluid className="py-10 mt-5">
         <div className="h-[450px] w-full rounded-3xl flex justify-center items-center">
           <img
-            src="https://cdn.pixabay.com/photo/2022/12/01/04/35/sunset-7628294_640.jpg"
+            src={thisMonthBanner?.image}
             className="h-full w-[90%] object-cover rounded-3xl"
           />
         </div>
@@ -181,22 +249,23 @@ const Home = () => {
             </span>
           </Col>
           <Col md={6} className="flex justify-end">
-            <button className="bg-[#DB4444] text-white text-[18px] font-sans px-20 h-[70px] rounded-[4px]">
+            <button className="bg-[#DB4444] text-white text-[18px] font-sans px-20 h-[70px] rounded-[4px]" onClick={() => navigate('/market')}>
               View All
             </button>
           </Col>
         </Row>
 
         <Row className="py-3 flex justify-center">
-          {products.map((product, index) => (
+          {bestSellingProducts.map((product, index) => (
             <Card
-              className="mx-4 mb-4 w-auto"
+              className="mx-4 mb-4 w-auto cursor-pointer"
               style={{ border: 0 }}
               key={index}
+              onClick={() => navigate('/product/' + product.id)}
             >
               <Row>
                 <img
-                  src="https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1"
+                  src={product.productImage}
                   style={{
                     width: 200,
                     height: 200,
@@ -205,10 +274,12 @@ const Home = () => {
               </Row>
               <Row className="bg-black w-[200px] py-2">
                 <span className="text-white text-[14px] font-sans">
-                  Product Name
+                  {product.name.length > 20
+                    ? product.name.substring(0, 20) + '...'
+                    : product.name}
                 </span>
                 <span className="text-[#DB4444] text-[14px] font-sans">
-                  Rp.90000
+                  Rp. <NumberFormatter number={product.price} />
                 </span>
                 <div className="flex w-auto">
                   <ReactStars
@@ -220,22 +291,15 @@ const Home = () => {
                     halfIcon={<i className="fa fa-star-half-alt"></i>}
                     fullIcon={<i className="fa fa-star"></i>}
                     activeColor="#ffd700"
+                    value={product.rating}
                   />
                   <span className="text-white text-[18px] font-sans flex items-center">
-                    (0)
+                    ({product.rating})
                   </span>
                 </div>
               </Row>
             </Card>
           ))}
-        </Row>
-
-        <Row>
-          <div className="flex justify-center w-full mt-4">
-            <button className="bg-[#DB4444] text-white text-[18px] font-sans px-20 h-[70px] rounded-[4px]">
-              View All Product
-            </button>
-          </div>
         </Row>
       </Row>
 
@@ -244,7 +308,7 @@ const Home = () => {
       <Row fluid className="py-10 mt-5">
         <div className="h-[450px] w-full rounded-3xl flex justify-center items-center">
           <img
-            src="https://t4.ftcdn.net/jpg/06/20/18/63/360_F_620186329_8mjJMsPcZQm5dSgVlMoZM0qQocHL7AZC.jpg"
+            src={exploreProduct?.image}
             className="h-full w-[90%] object-cover rounded-3xl"
           />
         </div>
@@ -271,13 +335,14 @@ const Home = () => {
         <Row className="py-3 flex justify-center">
           {products.map((product, index) => (
             <Card
-              className="mx-4 mb-4 w-auto"
+              className="mx-4 mb-4 w-auto cursor-pointer"
               style={{ border: 0 }}
               key={index}
+              onClick={() => navigate('/product/' + product.id)}
             >
               <Row>
                 <img
-                  src="https://images.unsplash.com/photo-1554629947-334ff61d85dc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1"
+                  src={product.productImage}
                   style={{
                     width: 200,
                     height: 200,
@@ -286,10 +351,13 @@ const Home = () => {
               </Row>
               <Row className="bg-black w-[200px] py-2">
                 <span className="text-white text-[14px] font-sans">
-                  Product Name
+                  {/* {product.name} */}
+                  {product.name.length > 20
+                    ? product.name.substring(0, 20) + '...'
+                    : product.name}
                 </span>
                 <span className="text-[#DB4444] text-[14px] font-sans">
-                  Rp.90000
+                  Rp. <NumberFormatter number={product.price} />
                 </span>
                 <div className="flex w-auto">
                   <ReactStars
@@ -301,9 +369,10 @@ const Home = () => {
                     halfIcon={<i className="fa fa-star-half-alt"></i>}
                     fullIcon={<i className="fa fa-star"></i>}
                     activeColor="#ffd700"
+                    value={product.rating}
                   />
                   <span className="text-white text-[18px] font-sans flex items-center">
-                    (0)
+                    ({product.rating})
                   </span>
                 </div>
               </Row>
@@ -313,7 +382,7 @@ const Home = () => {
 
         <Row>
           <div className="flex justify-center w-full mt-4">
-            <button className="bg-[#DB4444] text-white text-[18px] font-sans px-20 h-[70px] rounded-[4px]">
+            <button className="bg-[#DB4444] text-white text-[18px] font-sans px-20 h-[70px] rounded-[4px]" onClick={() => navigate('/market')}>
               View All Product
             </button>
           </div>
@@ -344,9 +413,9 @@ const Home = () => {
           <Col md={6}>
             <div className='relative h-full'>
               <img
-                src="https://img.freepik.com/free-photo/anime-style-character-space_23-2151133952.jpg?size=626&ext=jpg&ga=GA1.1.1413502914.1720310400&semt=ais_user"
+                src={newArrival01?.image}
                 alt="Lukisan Kanvas"
-                className='w-full h-full'
+                className='w-full h-full opacity-15'
               />
               <div className='absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent' />
               <div className='absolute bottom-4 left-4 text-white'>
@@ -361,9 +430,9 @@ const Home = () => {
               <Col md={12}>
                 <div className='relative'>
                   <img
-                    src="https://img.freepik.com/free-photo/anime-style-character-space_23-2151133952.jpg?size=626&ext=jpg&ga=GA1.1.1413502914.1720310400&semt=ais_user"
+                    src={newArrival02?.image}
                     alt="Canvas Collections"
-                    className='w-full h-auto'
+                    className='w-full h-auto opacity-15'
                   />
                   <div className='absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent' />
                   <div className='absolute bottom-4 left-4 text-white'>
@@ -376,9 +445,9 @@ const Home = () => {
               <Col md={6}>
                 <div className='relative'>
                   <img
-                    src="https://img.freepik.com/free-photo/anime-style-character-space_23-2151133952.jpg?size=626&ext=jpg&ga=GA1.1.1413502914.1720310400&semt=ais_user"
+                    src={newArrival03?.image}
                     alt="Lukisan"
-                    className='w-full h-auto'
+                    className='w-full h-auto opacity-15'
                   />
                   <div className='absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent' />
                   <div className='absolute bottom-4 left-4 text-white'>
@@ -391,9 +460,9 @@ const Home = () => {
               <Col md={6}>
                 <div className='relative'>
                   <img
-                    src="https://img.freepik.com/free-photo/anime-style-character-space_23-2151133952.jpg?size=626&ext=jpg&ga=GA1.1.1413502914.1720310400&semt=ais_user"
+                    src={newArrival04?.image}
                     alt="Lukisan"
-                    className='w-full h-auto'
+                    className='w-full h-auto opacity-15'
                   />
                   <div className='absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent' />
                   <div className='absolute bottom-4 left-4 text-white'>
@@ -411,7 +480,7 @@ const Home = () => {
 
 
       {/* // Optional */}
-      <Row className="w-75 justify-content-center mx-auto text-center" style={{ marginTop: 90 }}>
+      <Row className="w-75 justify-content-center mx-auto text-center pt-11 pb-60" style={{ marginTop: 90 }}>
         <Col md={4} className="mb-4 mb-md-0">
           <div className="flex flex-col items-center">
             <div className="p-4 mb-3 bg-black rounded-full border-[#DB4444] border-4">

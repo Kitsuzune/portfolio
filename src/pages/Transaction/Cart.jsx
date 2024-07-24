@@ -2,39 +2,35 @@ import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { UseBreadcrumb } from '../../components/UseBreadcrumb';
 import Button from '../../components/Button';
-import { getCart, plusCart, minusCart, checkout } from '../../api';
+import { getCart, plusCart, minusCart, checkout, updateTransaction } from '../../api';
 
 const Cart = () => {
     const [cart, setCart] = useState([]);
     const [total, setTotal] = useState(0);
     const [token, setToken] = useState('');
+    const [orderId, setOrderId] = useState('');
 
     useEffect(() => {
         fetchCart();
     }, []);
 
+
     useEffect(() => {
         if (token) {
             window.snap.pay(token, {
-                onSuccess: function (result) {
-                    console.log('Payment successful:', result);
-                    setToken('');
+                onSuccess: function () {
+                    handleUpdateTransaction('success');
                 },
-                onPending: function (result) {
-                    console.log('Payment pending:', result);
-                    setToken('');
+                onPending: function () {
+                    handleUpdateTransaction('pending');
                 },
-                onError: function (result) {
-                    console.log('Payment error:', result);
-                    setToken('');
+                onError: function () {
+                    handleUpdateTransaction('failed');
                 },
                 onClose: function () {
-                    console.log('Payment closed without success');
-                    setToken('');
+                    handleUpdateTransaction('pending');
                 },
             });
-
-
         }
     }, [token]);
 
@@ -91,12 +87,26 @@ const Cart = () => {
     };
 
     if (cart.length === 0) {
-        return <div className="text-white text-center mt-5">Your cart is empty.</div>;
+        // return <div className="text-black text-center mt-5">Your cart is empty.</div>;
+        return (
+            <Container fluid className="bg-[#0F0F0F] w-full flex justify-center m-0 px-0">
+                <div className="w-[90%] h-[50vh]">
+                    <Row>
+                        <UseBreadcrumb />
+                    </Row>
+
+                    <Row className="mt-5 text-white text-center flex justify-center items-center h-[100%]">
+                        <div className="">Your cart is empty.</div>
+                    </Row>
+                </div>
+            </Container>
+        )
     }
 
     const handleCheckout = async () => {
         const deduction = 0;
         const productList = cart.map(item => ({
+            productId: item.product.id,
             productName: item.product.name,
             productPrice: item.product.price,
             quantity: item.quantity,
@@ -109,13 +119,27 @@ const Cart = () => {
         };
 
         try {
-            // console.log('Checkout data:', data);
             const response = await checkout(data);
             setToken(response.data.token);
+            setOrderId(response.data.transactionLocal.id);
         } catch (error) {
             console.error('Error during checkout:', error);
         }
     };
+
+    const handleUpdateTransaction = async (status) => {
+        const data = {
+            orderId,
+            status,
+        };
+
+        try {
+            await updateTransaction(data);
+            fetchCart();
+        } catch (error) {
+            console.error('Error updating transaction:', error);
+        }
+    }
 
 
     return (

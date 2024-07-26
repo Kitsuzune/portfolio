@@ -171,7 +171,7 @@ const Home = () => {
         <Row className="py-3">
           <ScrollMenu>
             {products.map((product, index) => (
-              <Card className="mx-4" style={{ border: 0 }} key={index}>
+              <Card className="mx-4" style={{ border: 0 }} key={index} onClick={() => navigate('/product/' + product.id)}>
                 <Row className="bg-white rounded-t-lg">
                   <img
                     src={product.productImage}

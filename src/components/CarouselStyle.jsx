@@ -38,7 +38,7 @@ const CarouselStyle = ({ images, style = 'Classic' }) => {
             key={index}
             src={image}
             alt={`banner-${index}`}
-            className='w-full h-full object-cover'
+            className='w-full h-full object-contain'
           />
         ))}
       </Carousel>

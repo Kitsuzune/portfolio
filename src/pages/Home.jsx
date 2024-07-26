@@ -409,7 +409,7 @@ const Home = () => {
           </Col>
         </Row>
 
-        <Row className='g-4'>
+        <Row className='g-4 mb-5 pb-5'>
           <Col md={6}>
             <div className='relative h-full'>
               <img
@@ -476,38 +476,6 @@ const Home = () => {
           </Col>
         </Row>
 
-      </Row>
-
-
-      {/* // Optional */}
-      <Row className="w-75 justify-content-center mx-auto text-center pt-11 pb-60" style={{ marginTop: 90 }}>
-        <Col md={4} className="mb-4 mb-md-0">
-          <div className="flex flex-col items-center">
-            <div className="p-4 mb-3 bg-black rounded-full border-[#DB4444] border-4">
-              <Icon icon="mdi:truck-outline" style={{ fontSize: '40px', color: 'white' }} />
-            </div>
-            <h5 className="font-bold text-white">FREE AND FAST DELIVERY</h5>
-            <p className="text-gray-400">Free delivery for all orders over $140</p>
-          </div>
-        </Col>
-        <Col md={4} className="mb-4 mb-md-0">
-          <div className="flex flex-col items-center">
-            <div className="p-4 mb-3 bg-black rounded-full border-[#DB4444] border-4">
-              <Icon icon="ph:watch-light" style={{ fontSize: '40px', color: 'white' }} />
-            </div>
-            <h5 className="font-bold text-white">24/7 CUSTOMER SERVICE</h5>
-            <p className="text-gray-400">Friendly 24/7 customer support</p>
-          </div>
-        </Col>
-        <Col md={4} className="mb-4 mb-md-0">
-          <div className="flex flex-col items-center">
-            <div className="p-4 mb-3 bg-black rounded-full border-[#DB4444] border-4">
-              <Icon icon="grommet-icons:money" style={{ fontSize: '40px', color: 'white' }} />
-            </div>
-            <h5 className="font-bold text-white">MONEY BACK GUARANTEE</h5>
-            <p className="text-gray-400">We return money within 30 days</p>
-          </div>
-        </Col>
       </Row>
 
     </Container>

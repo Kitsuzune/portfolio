@@ -6,6 +6,9 @@ import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
 import useSignOut from 'react-auth-kit/hooks/useSignOut';
 import { useNavigate } from 'react-router-dom';
+import diamond from '../assets/images/diamond.gif'
+import chara from '../assets/images/chara.gif'
+import Sparkles from 'react-sparkle'
 
 function Navbar() {
     const isAuthenticated = useIsAuthenticated();
@@ -51,11 +54,11 @@ function Navbar() {
                             Home
                         </Link>
 
-                        <Link to="/" className='text-white text-[16px]' style={{ textDecoration: 'none' }}>
+                        <Link to="/contact" className='text-white text-[16px]' style={{ textDecoration: 'none' }}>
                             Contact
                         </Link>
 
-                        <Link to="/" className='text-white text-[16px]' style={{ textDecoration: 'none' }}>
+                        <Link to="/about" className='text-white text-[16px]' style={{ textDecoration: 'none' }}>
                             About
                         </Link>
 
@@ -70,6 +73,34 @@ function Navbar() {
                                 Store
                             </Link>
                         )}
+
+                        <div className="flex items-center hover:bg-[#1A1A1A] transition duration-300 ease-in-out rounded p-2">
+                            <div style={{ position: 'relative' }}>
+                                <Sparkles color="teal" overflowPx={10} count={3} minSize={30} fadeOutSpeed={15} flicker={false} />
+                                <Link
+                                    to="/ai/v1/"
+                                    className="text-white text-[16px]"
+                                    style={{ textDecoration: 'none' }}
+                                >
+                                    AI Corner
+                                </Link>
+                            </div>
+                            <img src={diamond} alt="diamond" className="w-[20px] h-[20px] ml-2" />
+                        </div>
+
+                        <div className="flex items-center hover:bg-[#1A1A1A] transition duration-300 ease-in-out rounded p-2">
+                            <div style={{ position: 'relative' }}>
+                                <Sparkles color="teal" overflowPx={10} count={3} minSize={30} fadeOutSpeed={15} flicker={false} />
+                                <Link
+                                    to="/itsu-game/v1/corner"
+                                    className="text-white text-[16px]"
+                                    style={{ textDecoration: 'none' }}
+                                >
+                                    いつ Games
+                                </Link>
+                            </div>
+                            <img src={chara} alt="diamond" className="w-[30px] h-[30px] scale-150 ml-2" />
+                        </div>
                     </Col>
 
                     <Col md={4} className='d-none d-md-flex justify-content-end align-items-center'>

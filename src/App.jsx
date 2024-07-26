@@ -21,6 +21,12 @@ import AdminOrder from "./pages/Admin/Menu/Orders/Order";
 import WishList from "./pages/User/Menu/WishList";
 import AdminBanner from "./pages/Admin/Menu/Banner/Banner";
 import EditBanner from "./pages/Admin/Menu/Banner/EditBanner";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import ImageGen from "./pages/AiCorner/image/ImageGen";
+import AiSelection from "./pages/AiCorner/Selection";
+import GameSelection from "./pages/Games/Selection";
+import Index from "./pages/Games/JumpingBird/Index";
 
 function App() {
   const location = useLocation();
@@ -35,6 +41,12 @@ function App() {
 
         {/* Home */}
         <Route path="/" element={<Home />} />
+
+        {/* About */}
+        <Route path="/about" element={<About />} />
+
+        {/* Contact */}
+        <Route path="/contact" element={<Contact />} />
 
         {/* Auth */}
         <Route path="/login" element={<Login />} />
@@ -62,6 +74,14 @@ function App() {
         <Route path="/admin/orders" element={<AdminOrder />} />
         <Route path="/admin/banner" element={<AdminBanner />} />
         <Route path="/admin/banner/:bannerId" element={<EditBanner />} />
+
+        {/* AI */}
+        <Route path="/ai/v1" element={<AiSelection />} />
+        <Route path="/ai/v1/image-gen" element={<ImageGen />} />
+
+        {/* Game */}
+        <Route path="/itsu-game/v1/corner" element={<GameSelection />} />
+        <Route path="/itsu-game/v1/jumping-bird/" element={<Index />} />
 
         {/* Unused */}
         {/* <Route path='/old' element={<IndexOld />} /> */}

@@ -7,6 +7,11 @@
   /* border: 1px solid red; */
 }
 
+.font-pixel {
+  font-family: 'Pixelify Sans';
+}
+
+
 .breadcrumb-item a {
   color: red
 }

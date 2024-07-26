@@ -8,6 +8,7 @@ import useSignOut from 'react-auth-kit/hooks/useSignOut';
 import { useNavigate } from 'react-router-dom';
 import diamond from '../assets/images/diamond.gif'
 import chara from '../assets/images/chara.gif'
+import ruby from '../assets/images/ruby.gif'
 import Sparkles from 'react-sparkle'
 
 function Navbar() {
@@ -62,12 +63,6 @@ function Navbar() {
                             About
                         </Link>
 
-                        {!isAuthenticated && (
-                            <Link to="/login" className='text-white text-[16px]' style={{ textDecoration: 'none' }}>
-                                Login
-                            </Link>
-                        )}
-
                         {isAuthenticated && (
                             <Link to="/market" className='text-white text-[16px]' style={{ textDecoration: 'none' }}>
                                 Store
@@ -79,7 +74,7 @@ function Navbar() {
                                 <Sparkles color="teal" overflowPx={10} count={3} minSize={30} fadeOutSpeed={15} flicker={false} />
                                 <Link
                                     to="/ai/v1/"
-                                    className="text-white text-[16px]"
+                                    className="text-white text-[16px] font-pixel"
                                     style={{ textDecoration: 'none' }}
                                 >
                                     AI Corner
@@ -93,14 +88,20 @@ function Navbar() {
                                 <Sparkles color="teal" overflowPx={10} count={3} minSize={30} fadeOutSpeed={15} flicker={false} />
                                 <Link
                                     to="/itsu-game/v1/corner"
-                                    className="text-white text-[16px]"
+                                    className="text-white text-[16px] font-pixel"
                                     style={{ textDecoration: 'none' }}
                                 >
-                                    いつ Games
+                                    ITSU Games
                                 </Link>
                             </div>
                             <img src={chara} alt="diamond" className="w-[30px] h-[30px] scale-150 ml-2" />
                         </div>
+
+                        {!isAuthenticated && (
+                            <Link to="/login" className='text-white text-[16px]' style={{ textDecoration: 'none' }}>
+                                Login
+                            </Link>
+                        )}
                     </Col>
 
                     <Col md={4} className='d-none d-md-flex justify-content-end align-items-center'>
@@ -110,6 +111,15 @@ function Navbar() {
                                 <Icon icon="iconamoon:search-thin" className='text-black text-[35px]' />
                             </div>
                         </div> */}
+                        <div className='mr-5 bg-transparent border-red-700 border-1 rounded-[4px] h-full p-2'>
+                            <div className='flex items-center gap-2 h-full mx-2'>
+                                <span className='text-red-700 text-[16px] font-pixel'>
+                                    100 Ruby
+                                </span>
+                                <img src={ruby} alt="ruby" className="w-[20px] h-[20px] scale-150 ml-2" />
+                            </div>
+                        </div>
+
 
                         <Icon icon="solar:heart-linear" className='text-white text-[35px] mr-5 cursor-pointer' onClick={() => navigate('/wishlist')} />
                         <Icon icon="mdi-light:cart" className='text-white text-[35px] cursor-pointer' onClick={() => navigate('/cart')} />
@@ -149,41 +159,43 @@ function Navbar() {
                     </Col>
                 </Row>
 
-                {isMenuOpen && (
-                    <Row className='d-md-none bg-[#0F0F0F] w-full'>
-                        <Col className='d-flex flex-column align-items-start p-3'>
-                            <span className='text-white text-[16px] mb-2'>
-                                Home
-                            </span>
+                {
+                    isMenuOpen && (
+                        <Row className='d-md-none bg-[#0F0F0F] w-full'>
+                            <Col className='d-flex flex-column align-items-start p-3'>
+                                <span className='text-white text-[16px] mb-2'>
+                                    Home
+                                </span>
 
-                            <span className='text-white text-[16px] mb-2'>
-                                Contact
-                            </span>
+                                <span className='text-white text-[16px] mb-2'>
+                                    Contact
+                                </span>
 
-                            <span className='text-white text-[16px] mb-2'>
-                                About
-                            </span>
+                                <span className='text-white text-[16px] mb-2'>
+                                    About
+                                </span>
 
-                            <span className='text-white text-[16px] mb-2'>
-                                Sign Up
-                            </span>
+                                <span className='text-white text-[16px] mb-2'>
+                                    Sign Up
+                                </span>
 
-                            <div className='bg-white w-full rounded-[4px] h-full p-2 mb-2'>
-                                <div className='d-flex justify-content-center align-items-center h-full mx-2'>
-                                    <input type='text' placeholder='What are you looking for?' className='bg-transparent border-0 w-full h-full outline-none' />
-                                    <Icon icon="iconamoon:search-thin" className='text-black text-[35px]' />
+                                <div className='bg-white w-full rounded-[4px] h-full p-2 mb-2'>
+                                    <div className='d-flex justify-content-center align-items-center h-full mx-2'>
+                                        <input type='text' placeholder='What are you looking for?' className='bg-transparent border-0 w-full h-full outline-none' />
+                                        <Icon icon="iconamoon:search-thin" className='text-black text-[35px]' />
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div className='d-flex justify-content-start align-items-center'>
-                                <Icon icon="solar:heart-linear" className='text-white text-[35px] mr-5' />
-                                <Icon icon="mdi-light:cart" className='text-white text-[35px]' />
-                            </div>
-                        </Col>
-                    </Row>
-                )}
-            </Container>
-        </Row>
+                                <div className='d-flex justify-content-start align-items-center'>
+                                    <Icon icon="solar:heart-linear" className='text-white text-[35px] mr-5' />
+                                    <Icon icon="mdi-light:cart" className='text-white text-[35px]' />
+                                </div>
+                            </Col>
+                        </Row>
+                    )
+                }
+            </Container >
+        </Row >
     );
 }
 

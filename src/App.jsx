@@ -26,7 +26,7 @@ import Contact from "./pages/Contact";
 import ImageGen from "./pages/AiCorner/image/ImageGen";
 import AiSelection from "./pages/AiCorner/Selection";
 import GameSelection from "./pages/Games/Selection";
-import Index from "./pages/Games/JumpingBird/Index";
+import GameBird from "./pages/Games/JumpingBird/Index";
 
 function App() {
   const location = useLocation();
@@ -81,7 +81,7 @@ function App() {
 
         {/* Game */}
         <Route path="/itsu-game/v1/corner" element={<GameSelection />} />
-        <Route path="/itsu-game/v1/jumping-bird/" element={<Index />} />
+        <Route path="/itsu-game/v1/jumping-bird/" element={<GameBird />} />
 
         {/* Unused */}
         {/* <Route path='/old' element={<IndexOld />} /> */}

@@ -48,7 +48,9 @@ const Footer = () => {
         <Col md={3} className="mb-4">
           <h5>Quick Link</h5>
           <ul className="list-unstyled">
-            <li>Contact</li>
+            <li className="cursor-pointer hover:text-red-500 transition duration-200" onClick={() => navigate('/contact')}>
+              Contact
+            </li>
           </ul>
         </Col>
       </Row>

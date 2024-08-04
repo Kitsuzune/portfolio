@@ -15,7 +15,7 @@ const Footer = () => {
           <h5>IT'S U</h5>
           <p>Subscribe</p>
           <p>Seek Support By Contacting Us</p>
-          <Button variant="outline-light" className="mt-2">
+          <Button variant="outline-light" className="mt-2" onClick={() => navigate('/contact')}>
             {'Send Suppot Email ->'}
           </Button>
         </Col>

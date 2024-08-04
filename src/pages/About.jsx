@@ -4,6 +4,7 @@ import useBreadcrumbs from "use-react-router-breadcrumbs";
 import { Link } from 'react-router-dom'
 import aboutImage from '../assets/images/about-side.png'
 import { Icon } from '@iconify/react/dist/iconify.js'
+import fian from '../assets/images/fian.jpeg'
 
 const About = () => {
     const breadcrumbs = useBreadcrumbs();
@@ -99,13 +100,13 @@ const About = () => {
                     <Col md={4} className="mb-4 mb-md-0">
                         <div className="flex flex-col items-center">
                             <img src="https://media.licdn.com/dms/image/D5603AQFqsSOLRKNjdg/profile-displayphoto-shrink_800_800/0/1718961962298?e=1727308800&v=beta&t=AXnZWnUP-P7KA_Vmr2AiCeTi9Vlu9jZZE7tAWgj7qyQ" alt="Bowo" className="mb-3" style={{ width: '100%', height: '600px', objectFit: 'cover' }} />
-                            <h5 className="mt-3 font-bold text-white">Fian</h5>
-                            <p className="text-gray-400">Managing Director</p>
+                            <h5 className="mt-3 font-bold text-white">Bowo</h5>
+                            <p className="text-gray-400">Fullstack Developer</p>
                         </div>
                     </Col>
                     <Col md={4} className="mb-4 mb-md-0">
                         <div className="flex flex-col items-center">
-                            <img src="https://img.freepik.com/premium-photo/anime-male-avatar_950633-895.jpg" alt="Fian" className="mb-3" style={{ width: '100%', height: '600px', objectFit: 'cover' }} />
+                            <img src={fian} alt="Fian" className="mb-3" style={{ width: '100%', height: '600px', objectFit: 'cover' }} />
                             <h5 className="mt-3 font-bold text-white">Fian</h5>
                             <p className="text-gray-400">Managing Director</p>
                         </div>

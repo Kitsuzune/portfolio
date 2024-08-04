@@ -4,7 +4,7 @@ import ReactStars from 'react-rating-stars-component';
 import Pagination from '../../components/Pagination';
 import Filter from '../../components/Filter';
 import { useNavigate } from 'react-router-dom';
-import { getProduct } from '../../api';
+import { getProduct, getExploreProduct } from '../../api';
 import NumberFormatter from '../../hooks/numberFormatter';
 
 const Store = () => {
@@ -15,6 +15,7 @@ const Store = () => {
     const [sortedProducts, setSortedProducts] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [totalPages, setTotalPages] = useState(1);
+    const [exploreProducts, setExploreProducts] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -32,6 +33,19 @@ const Store = () => {
         fetchProducts();
     }, [currentPage, itemsPerPage]);
 
+    useEffect(() => {
+        const fetchExploreProducts = async () => {
+            try {
+                const response = await getExploreProduct();
+                setExploreProducts(response.data.banner);
+            } catch (error) {
+                console.error('Error fetching explore products:', error);
+            }
+        };
+
+        fetchExploreProducts();
+    }, []);
+
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
@@ -45,7 +59,8 @@ const Store = () => {
             <Row fluid className="py-10">
                 <div className="h-[200px] w-full rounded-3xl flex justify-center items-center">
                     <img
-                        src="https://pbs.twimg.com/media/GOqKjmAXIAA8Lyi.jpg:large"
+                        // src="https://pbs.twimg.com/media/GOqKjmAXIAA8Lyi.jpg:large"
+                        src={exploreProducts.image}
                         className="h-full w-[90%] object-none rounded-3xl"
                     />
                 </div>

@@ -101,19 +101,6 @@ const DefaultLayout = ({ children }) => {
 
                     <hr className="border" />
 
-                    {/* <Link
-                        to="/admin/logout"
-                        className="block py-2 my-2 px-4 rounded hover:bg-gray-700 text-white text-decoration-none"
-                    >
-                        <div className="flex items-center">
-                            <Icon
-                                icon="material-symbols:logout-sharp"
-                                className="text-white text-[24px]"
-                            />
-                            <span className="ml-2">Logout</span>
-                        </div>
-                    </Link> */}
-
                     <Link
                         to="/"
                         className="block py-2 my-2 px-4 rounded hover:bg-gray-700 text-white text-decoration-none"

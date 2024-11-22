@@ -30,8 +30,6 @@ export const updateProfilePicture = (formData) => API.put("/profile/picture", fo
     },
 });
 
-
-
 // Product
 export const getProduct = (page, limit, search) => API.get("/product", { params: { page, limit, search } });
 export const getProductByBestSeller = () => API.get("/product/sort/best-seller");

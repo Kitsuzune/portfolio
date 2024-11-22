@@ -22,6 +22,11 @@ const WishList = () => {
         }
     }
 
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    }
+
+    
     useEffect(() => {
         fetchWishlist(currentPage);
     }, [currentPage]);

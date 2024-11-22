@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-import Home from "./pages/Home";
+import Home from "./pages/Store";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Login from "./pages/Auth/Login";
@@ -27,6 +27,7 @@ import ImageGen from "./pages/AiCorner/image/ImageGen";
 import AiSelection from "./pages/AiCorner/Selection";
 import GameSelection from "./pages/Games/Selection";
 import GameBird from "./pages/Games/JumpingBird/Index";
+import SpacePoint from "./pages/Games/SpacePoint/SpacePoint";
 
 function App() {
   const location = useLocation();
@@ -40,10 +41,10 @@ function App() {
         <Route path="*" element={<NotFound />} />
 
         {/* Home */}
-        <Route path="/" element={<Home />} />
+        <Route path="/Store" element={<Home />} />
 
         {/* About */}
-        <Route path="/about" element={<About />} />
+        <Route path="/" element={<About />} />
 
         {/* Contact */}
         <Route path="/contact" element={<Contact />} />
@@ -82,6 +83,8 @@ function App() {
         {/* Game */}
         <Route path="/itsu-game/v1/corner" element={<GameSelection />} />
         <Route path="/itsu-game/v1/jumping-bird/" element={<GameBird />} />
+
+        <Route path="/itsu-game/v1/space-point" element={<SpacePoint />} />
 
         {/* Unused */}
         {/* <Route path='/old' element={<IndexOld />} /> */}

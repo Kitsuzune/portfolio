@@ -37,8 +37,8 @@ function Navbar() {
             <Container fluid className='bg-[#0F0F0F]'>
                 <Row className='w-[90%] mx-auto py-5 d-flex justify-content-between align-items-center'>
                     <Col xs={6} md={2} className='d-flex justify-content-start align-items-center'>
-                        <span className='text-white font-sans fw-bold text-[24px]'>
-                            IT'S U
+                        <span className='text-white font-sans fw-bold text-[24px] cursor-pointer hover:scale-110 transition duration-300 ease-in-out' onClick={() => navigate('/')}>
+                            Kitsuzune
                         </span>
                     </Col>
 
@@ -51,20 +51,20 @@ function Navbar() {
                     </Col>
 
                     <Col md={6} className={`d-none d-md-flex justify-content-center gap-5 align-items-center ${isMenuOpen ? 'd-flex flex-column' : ''}`}>
-                        <Link to="/" className='text-white text-[16px]' style={{ textDecoration: 'none' }}>
-                            Home
-                        </Link>
-
-                        <Link to="/contact" className='text-white text-[16px]' style={{ textDecoration: 'none' }}>
-                            Contact
-                        </Link>
-
-                        <Link to="/about" className='text-white text-[16px]' style={{ textDecoration: 'none' }}>
+                        <Link to="/about" className='text-white text-[16px] cursor-pointer hover:scale-110 transition duration-300 ease-in-out' style={{ textDecoration: 'none' }}>
                             About
                         </Link>
 
+                        <Link to="/store" className='text-white text-[16px] cursor-pointer hover:scale-110 transition duration-300 ease-in-out' style={{ textDecoration: 'none' }}>
+                            My Store
+                        </Link>
+
+                        <Link to="/contact" className='text-white text-[16px] cursor-pointer hover:scale-110 transition duration-300 ease-in-out' style={{ textDecoration: 'none' }}>
+                            Contact
+                        </Link>
+
                         {isAuthenticated && (
-                            <Link to="/market" className='text-white text-[16px]' style={{ textDecoration: 'none' }}>
+                            <Link to="/market" className='text-white text-[16px] cursor-pointer hover:scale-110 transition duration-300 ease-in-out' style={{ textDecoration: 'none' }}>
                                 Store
                             </Link>
                         )}

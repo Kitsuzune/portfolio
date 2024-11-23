@@ -12,7 +12,7 @@ export const UseBreadcrumb = () => {
 
     return (
         <Row className="text-white">
-            <Col md={6} className="py-4">
+            <Col xs={12} md={6} className="py-4">
                 {breadcrumbs.map(({ match, breadcrumb }, index) => (
                     <li key={index + 1} className="inline-flex items-center">
                         <Link
@@ -30,7 +30,7 @@ export const UseBreadcrumb = () => {
                 ))}
             </Col>
 
-            <Col md={6} className="py-4 d-flex justify-content-end">
+            <Col xs={12} md={6} className="py-4 d-flex justify-content-end">
                 {isAuthenticated ? (
                     <div className="text-white">
                         Welcome! &nbsp;

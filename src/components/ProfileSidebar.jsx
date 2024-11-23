@@ -25,7 +25,7 @@ const ProfileSidebar = () => {
                     </Link>
                 </div>
             </div>
-            <div className="mb-6">
+            <div className="mb-6 md:block hidden">
                 <h2 className="font-semibold text-lg">Marketplace</h2>
                 <div className='ml-10'>
                     <Link to="/orders" className={`block mt-2 text-sm text-decoration-none ${isActive('/orders')}`}>

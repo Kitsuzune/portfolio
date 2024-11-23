@@ -33,7 +33,7 @@ const WishList = () => {
 
     return (
         <UserLayout>
-            <div className="bg-[#202020] p-10 ms-5 rounded-lg">
+            <div className="bg-[#202020] p-10 md:ms-5 rounded-lg">
                 <Row>
                     <h1 className="text-red-500 text-[20px]">Daftar Produk</h1>
                 </Row>
@@ -45,45 +45,54 @@ const WishList = () => {
                         <span>Go to the product page and add some products to your wishlist</span>
                     </div>
                 ) : (
-                    wishlist.map(wishlist => (
-                        <div key={wishlist.id} className='grid grid-cols-12 mt-3'>
-                            <Row className="bg-white p-4 col-span-11 cursor-pointer" onClick={() => navigate(`/product/${wishlist.product.id}`)}>
-                                <Col md={2}>
-                                    <img src={wishlist.product.productImage} alt="Product" className="w-[100px] h-[100px]" />
-                                </Col>
-                                <Col md={8} className="flex flex-col justify-center">
-                                    <Row>
-                                        <span className="text-[20px] text-black">
+                    wishlist.map((wishlist) => (
+                        <div key={wishlist.id} className="grid grid-cols-1 gap-4 md:grid-cols-12 mt-3">
+                            <div 
+                                className="bg-white p-4 md:col-span-11 cursor-pointer flex flex-col md:flex-row gap-4" 
+                                onClick={() => navigate(`/product/${wishlist.product.id}`)}
+                            >
+                                <div className="flex-shrink-0 flex justify-center items-center">
+                                    <img 
+                                        src={wishlist.product.productImage} 
+                                        alt="Product" 
+                                        className="w-[100px] h-[100px] object-cover" 
+                                    />
+                                </div>
+                                <div className="flex-grow flex flex-col justify-center">
+                                    <div>
+                                        <span className="text-lg font-medium text-black">
                                             {wishlist.product.name}
                                         </span>
-                                    </Row>
-                                    <Row>
-                                        <span className="text-[14px] text-black">
+                                    </div>
+                                    <div>
+                                        <span className="text-sm text-gray-600">
                                             Added On {new Date(wishlist.createdAt).toLocaleDateString()}
                                         </span>
-                                    </Row>
-                                    <Row>
-                                        <span className="text-[14px] text-black">
-                                            Status: {wishlist.product.status ? <span className="text-green-600">Available</span> : <span className="text-red-600">Not Available</span>}
+                                    </div>
+                                    <div>
+                                        <span className="text-sm text-gray-600">
+                                            Status: {wishlist.product.status ? (
+                                                <span className="text-green-600">Available</span>
+                                            ) : (
+                                                <span className="text-red-600">Not Available</span>
+                                            )}
                                         </span>
-                                    </Row>
-                                </Col>
-                                <Col md={2} className="flex flex-col justify-center">
-                                    <Row>
-                                        <span className="text-[20px] text-black">
-                                            Rp. {wishlist.product.price}
-                                        </span>
-                                    </Row>
-                                </Col>
-                            </Row>
-
-                            <Row className="">
-                                <button className="bg-gray-600 text-white py-2 rounded-r-3xl hover:bg-red-500 transition duration-500">
+                                    </div>
+                                </div>
+                                <div className="flex-shrink-0 flex flex-col justify-center items-end">
+                                    <span className="text-lg font-semibold text-black">
+                                        Rp. {wishlist.product.price}
+                                    </span>
+                                </div>
+                            </div>
+                    
+                            <div className="flex justify-end">
+                                <button className="bg-gray-600 text-white py-2 px-4 md:rounded-r-3xl hover:bg-red-500 transition duration-500">
                                     Delete
                                 </button>
-                            </Row>
+                            </div>
                         </div>
-                    ))
+                    ))  
                 )}
 
                 {wishlist.length > 0 && (

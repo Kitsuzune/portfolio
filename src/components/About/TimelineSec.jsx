@@ -14,6 +14,7 @@ const TimelineSec = () => {
         const isMobile = window.innerWidth <= 768;
 
         const tl1 = gsap.timeline();
+        if (!isMobile) {
         tl1.fromTo(
             ".about-me-content",
             { opacity: 0 },
@@ -25,12 +26,14 @@ const TimelineSec = () => {
                     scrub: 1
                 },
                 opacity: 1,
-                duration: 1
-            }
-        );
+                    duration: 1
+                }
+            );
+        }
 
         let ctx = gsap.context(() => {
             const tl2 = gsap.timeline();
+            if (!isMobile) {
             tl2.to(
                 ".master-tl",
                 {
@@ -45,7 +48,8 @@ const TimelineSec = () => {
                     },
                     zIndex: 10
                 }
-            );
+                );
+            }
 
             const tl3 = gsap.timeline({
                 scrollTrigger: {
@@ -86,6 +90,7 @@ const TimelineSec = () => {
             });
             tl4.to(".contact-section", { clipPath: "circle(100% at 50% 50%)" }, "reveal");
 
+            if (!isMobile) {
             tl4.fromTo(
                 ".about-me-content",
                 { opacity: 0 },
@@ -97,8 +102,9 @@ const TimelineSec = () => {
                         end: "top top",
                         scrub: 1,
                     },
-                }
-            );
+                    }
+                );
+            }
         }, component);
         return () => ctx.revert();
     }, []);

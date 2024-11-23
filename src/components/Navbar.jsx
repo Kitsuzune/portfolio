@@ -1,6 +1,6 @@
 import { Icon } from '@iconify/react';
 import React, { useState } from 'react';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row, Offcanvas } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import useAuthUser from 'react-auth-kit/hooks/useAuthUser';
 import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
@@ -10,7 +10,7 @@ import diamond from '../assets/images/diamond.gif'
 import chara from '../assets/images/chara.gif'
 import ruby from '../assets/images/ruby.gif'
 import Sparkles from 'react-sparkle'
-import { FaDoorOpen } from 'react-icons/fa';
+import { FaCartPlus, FaDoorClosed, FaDoorOpen, FaHeart, FaShieldAlt, FaUser } from 'react-icons/fa';
 
 function Navbar() {
     const isAuthenticated = useIsAuthenticated();
@@ -34,7 +34,7 @@ function Navbar() {
     };
 
     return (
-        <Row fluid className='bg-black pt-5'>
+        <Row fluid className='bg-black md:pt-5'>
             <Container fluid className='bg-[#0F0F0F]'>
                 <Row className='w-[90%] mx-auto py-5 d-flex justify-content-between align-items-center'>
                     <Col xs={6} md={2} className='d-flex justify-content-start align-items-center'>
@@ -51,7 +51,7 @@ function Navbar() {
                         />
                     </Col>
 
-                    <Col md={6} className={`d-none d-md-flex justify-content-center gap-5 align-items-center ${isMenuOpen ? 'd-flex flex-column' : ''}`}>
+                    <Col md={6} className='d-none d-md-flex justify-content-center gap-5 align-items-center'>
                         <Link to="/experience" className='text-white text-[16px] cursor-pointer hover:scale-110 transition duration-300 ease-in-out' style={{ textDecoration: 'none' }}>
                             Experience
                         </Link>
@@ -172,43 +172,176 @@ function Navbar() {
                     </Col>
                 </Row>
 
-                {
-                    isMenuOpen && (
-                        <Row className='d-md-none bg-[#0F0F0F] w-full'>
-                            <Col className='d-flex flex-column align-items-start p-3'>
-                                <span className='text-white text-[16px] mb-2'>
-                                    Home
-                                </span>
+                <Offcanvas show={isMenuOpen} onHide={toggleMenu} placement="end" style={{ backgroundColor: '#F5F5F5' }}>
+                    <Offcanvas.Header closeButton>
+                        <Offcanvas.Title className='text-black'>Menu</Offcanvas.Title>
+                    </Offcanvas.Header>
+                    <Offcanvas.Body>
+                        <div className='flex flex-col items-center justify-center'>
 
-                                <span className='text-white text-[16px] mb-2'>
-                                    Contact
-                                </span>
+                            {/* ruby */}
+                            {/* <div className='flex items-center my-2 justify-center bg-transparent w-full p-2 rounded-xl'>
+                                <span className='text-[16px] font-bold cursor-pointer'>0 Ruby</span>
+                                <img src={ruby} alt="ruby" className="w-[20px] h-[20px] scale-150 ml-2" />
+                            </div> */}
 
-                                <span className='text-white text-[16px] mb-2'>
-                                    About
-                                </span>
+                            {isAuthenticated && (
+                                <React.Fragment>
+                                    <div className='grid grid-cols-2 gap-2 w-full my-2'>
+                                        <div className='flex items-center justify-center black_border bg-transparent w-full p-2 rounded-xl border-2 border-red-700'>
+                                            <span className='text-[16px] font-pixel font-bold cursor-pointer'>0 Ruby</span>
+                                            <img src={ruby} alt="ruby" className="w-[20px] h-[20px] scale-150 ml-2" />
+                                        </div>
+                                        <div 
+                                            className='flex gap-3 items-center justify-center bg-yellow-500 border-yellow-800 border-2 black_border hover:bg-black transition duration-300 ease-in-out hover:text-white w-full p-2 rounded-xl'
+                                            onClick={() => {
+                                                navigate('/profile');
+                                                toggleMenu();
+                                            }}
+                                        >
+                                            <FaUser />
+                                            My Profile
+                                        </div>
+                                    </div>
+                                    <div className='grid grid-cols-2 gap-2 w-full my-2'>
+                                        <div 
+                                            className='flex gap-3 items-center justify-center bg-yellow-500 border-yellow-800 border-2 black_border hover:bg-black transition duration-300 ease-in-out hover:text-white w-full p-2 rounded-xl'
+                                            onClick={() => {
+                                                navigate('/wishlist');
+                                                toggleMenu();
+                                            }}
+                                        >
+                                            <FaHeart />
+                                            Favourites
+                                        </div>
+                                        <div 
+                                            className='flex gap-3 items-center justify-center bg-yellow-500 border-yellow-800 border-2 black_border hover:bg-black transition duration-300 ease-in-out hover:text-white w-full p-2 rounded-xl'
+                                            onClick={() => {
+                                                navigate('/cart');
+                                                toggleMenu();
+                                            }}
+                                        >
+                                            <FaCartPlus />
+                                            My Cart
+                                        </div>
+                                    </div>
 
-                                <span className='text-white text-[16px] mb-2'>
-                                    Sign Up
-                                </span>
+                                    {authUser.adminToken && (
+                                        <div className='flex gap-3 my-2 items-center justify-center bg-yellow-500 border-yellow-800 border-2 black_border hover:bg-black transition duration-300 ease-in-out hover:text-white w-full p-2 rounded-xl'>
+                                            <FaShieldAlt />
+                                            Admin
+                                        </div>
+                                    )}
+                                </React.Fragment>
+                            )}
+                            {/* 
+                            {
+                                authUser.adminToken && (
+                                    <Link to="/admin/dashboard" className='flex items-center px-4 py-2 text-decoration-none text-white hover:bg-white hover:bg-opacity-10'>
+                                        <Icon icon="mdi:shield-account" className='mr-2' />
+                                        Admin
+                                    </Link>
+                                )} */}
 
-                                <div className='bg-white w-full rounded-[4px] h-full p-2 mb-2'>
-                                    <div className='d-flex justify-content-center align-items-center h-full mx-2'>
-                                        <input type='text' placeholder='What are you looking for?' className='bg-transparent border-0 w-full h-full outline-none' />
-                                        <Icon icon="iconamoon:search-thin" className='text-black text-[35px]' />
+                            <div
+                                className='flex items-center my-2 justify-center bg-orange-500 border-orange-800 border-2 black_border w-full p-2 rounded-xl hover:bg-black transition duration-300 ease-in-out hover:text-white'
+                                onClick={() => {
+                                    navigate('/experience');
+                                    toggleMenu();
+                                }}
+                            >
+                                <span className='text-[16px] font-bold cursor-pointer'>Experience</span>
+                            </div>
+
+                            <div
+                                className='flex items-center my-2 justify-center bg-orange-500 border-orange-800 border-2 black_border w-full p-2 rounded-xl hover:bg-black transition duration-300 ease-in-out hover:text-white'
+                                onClick={() => {
+                                    navigate('/education');
+                                    toggleMenu();
+                                }}
+                            >
+                                <span className='text-[16px] font-bold cursor-pointer'>Education</span>
+                            </div>
+
+                            <div
+                                className='flex items-center my-2 justify-center bg-orange-500 border-orange-800 border-2 black_border w-full p-2 rounded-xl hover:bg-black transition duration-300 ease-in-out hover:text-white'
+                                onClick={() => {
+                                    navigate('/store');
+                                    toggleMenu();
+                                }}
+                            >
+                                <span className='text-[16px] font-bold cursor-pointer'>My Store</span>
+                            </div>
+
+                            <div
+                                className='flex items-center my-2 justify-center bg-orange-500 border-orange-800 border-2 black_border w-full p-2 rounded-xl hover:bg-black transition duration-300 ease-in-out hover:text-white'
+                                onClick={() => {
+                                    navigate('/contact');
+                                    toggleMenu();
+                                }}
+                            >
+                                <span className='text-[16px] font-bold cursor-pointer'>Contact</span>
+                            </div>
+
+                            <div
+                                className='flex items-center my-2 justify-center bg-yellow-500 border-yellow-800 border-2 orange_border w-full p-2 rounded-xl hover:bg-blue-500 transition duration-300 ease-in-out hover:text-white'
+                                onClick={() => {
+                                    navigate('/ai/v1/');
+                                    toggleMenu();
+                                }}
+                            >
+                                <div style={{ position: 'relative' }}>
+                                    <Sparkles color="teal" overflowPx={10} count={3} minSize={30} fadeOutSpeed={15} flicker={false} />
+                                    <span className='text-[16px] font-pixel font-bold cursor-pointer inline-block'>AI Corner</span>
+                                </div>
+                                <img src={diamond} alt="diamond" className="w-[15px] h-[15px] scale-150 ml-3" />
+                            </div>
+
+                            <div
+                                className='flex items-center my-2 justify-center bg-yellow-500 border-yellow-800 border-2 orange_border w-full p-2 rounded-xl hover:bg-blue-500 transition duration-300 ease-in-out hover:text-white'
+                                onClick={() => {
+                                    navigate('/itsu-game/v1/corner');
+                                    toggleMenu();
+                                }}
+                            >
+                                <div style={{ position: 'relative' }}>
+                                    <Sparkles color="teal" overflowPx={10} count={3} minSize={30} fadeOutSpeed={15} flicker={false} />
+                                    <span className='text-[16px] font-pixel font-bold cursor-pointer inline-block'>ITSU Games</span>
+                                </div>
+                                <img src={diamond} alt="diamond" className="w-[15px] h-[15px] scale-150 ml-3" />
+                            </div>
+
+                            {!isAuthenticated && (
+                                <div
+                                    className='flex items-center my-2 justify-center bg-orange-500 border-orange-800 border-2 black_border w-full p-2 rounded-xl hover:bg-black transition duration-300 ease-in-out hover:text-white'
+                                    onClick={() => {
+                                        navigate('/login');
+                                        toggleMenu();
+                                    }}
+                                >
+                                    {/* <span className='text-[16px] font-bold cursor-pointer'>Login</span> */}
+                                    <div className='flex items-center gap-2'>
+                                        <span className='text-[16px] font-bold cursor-pointer'>Login</span>
+                                        <FaDoorOpen />
                                     </div>
                                 </div>
+                            )}
 
-                                <div className='d-flex justify-content-start align-items-center'>
-                                    <Icon icon="solar:heart-linear" className='text-white text-[35px] mr-5' />
-                                    <Icon icon="mdi-light:cart" className='text-white text-[35px]' />
+                            {isAuthenticated && (
+                                <div className='flex items-center my-2 justify-center bg-orange-500 border-orange-800 border-2 black_border w-full p-2 rounded-xl hover:bg-black transition duration-300 ease-in-out hover:text-white'>
+                                    <div className='flex items-center gap-2'>
+                                        <span className='text-[16px] font-bold cursor-pointer'>Logout</span>
+                                        <FaDoorClosed />
+                                    </div>
                                 </div>
-                            </Col>
-                        </Row>
-                    )
-                }
-            </Container >
-        </Row >
+                            )}
+
+                        </div>
+                        {/* ... other links ... */}
+                    </Offcanvas.Body>
+                </Offcanvas>
+            </Container>
+        </Row>
     );
 }
 

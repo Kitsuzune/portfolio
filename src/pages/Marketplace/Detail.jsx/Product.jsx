@@ -9,6 +9,7 @@ import { ScrollMenu } from 'react-horizontal-scrolling-menu';
 import { getProductDetail, addToCart, addToWishlist, deleteWishlist, getReview, addReview } from '../../../api';
 import { useNavigate } from 'react-router-dom';
 import moment from 'moment/moment';
+import NumberFormatter from '../../../hooks/numberFormatter';
 
 const Product = () => {
     const { id } = useParams();
@@ -145,7 +146,7 @@ const Product = () => {
 
                 <Row className='mt-5'>
                     <Col md={6}>
-                        <div className="h-[80vh] pe-5 w-full rounded-3xl flex justify-center items-center bg-white">
+                        <div className="h-[80vh] w-full rounded-3xl flex justify-center items-center bg-white">
                             <img
                                 src={product.productImage}
                                 className="rounded-3xl object-cover h-full"
@@ -183,7 +184,7 @@ const Product = () => {
                                 </span>
                             </div>
                             <span className="text-white text-[40px] font-sans font-thin">
-                                Rp {product.price}
+                                Rp. <NumberFormatter number={product.price} />
                             </span>
                             <span className="text-white text-[16px] font-sans w-3/4 text-justify">
                                 {product.description}
@@ -206,7 +207,7 @@ const Product = () => {
                                         +
                                     </button>
                                 </div>
-                                <Button className="px-5 py-2 rounded-md" onClick={handleAddToCart}>
+                                <Button className="px-5 py-2 rounded-md hover:bg-red-400 transition-all duration-700" onClick={handleAddToCart}>
                                     Add to Cart
                                 </Button>
                                 <button className={`group ${product.isFavourite ? 'bg-red-600 hover:bg-gray-700' : 'bg-[#202020] hover:bg-gray-700'} text-white text-[40px] px-4 py-2 h-[70px] rounded-md border-2 transition-all duration-700 relative`} onClick={product.isFavourite ? () => handleRemoveFromWishlist(product.favouriteId) : handleAddToWishlist}>

@@ -63,7 +63,7 @@ const Profile = () => {
     return (
         <UserLayout>
             <Form onSubmit={handleSubmit}>
-                <div className="bg-[#202020] p-10 ms-5 rounded-lg">
+                <div className="bg-[#202020] p-10 md:ms-5 rounded-lg">
                     <Row>
                         <h1 className="text-red-500 text-[20px]">Edit Your Profile</h1>
                     </Row>
@@ -84,7 +84,7 @@ const Profile = () => {
                         </Col>
                         <Col md={6}>
                             <div className="form-group">
-                                <label htmlFor="lastName" className="text-white mb-2">Last Name</label>
+                                <label htmlFor="lastName" className="text-white mb-2 ">Last Name</label>
                                 <input
                                     type="text"
                                     className="form-control"

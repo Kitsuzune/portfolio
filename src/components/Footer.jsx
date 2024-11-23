@@ -61,7 +61,7 @@ const Footer = () => {
         <Col md={3} className="mb-4">
           <h5>Account</h5>
           <ul className="list-unstyled">
-            {isAuthenticated && <li>My Account</li>}
+            {isAuthenticated && <li className="cursor-pointer hover:text-red-500 transition duration-200" onClick={() => navigate('/profile')}>My Account</li>}
             {!isAuthenticated && (
               <li className="cursor-pointer hover:text-red-500 transition duration-200" onClick={() => navigate('/login')}>
                 Login / Register

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Home from "./pages/Store";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
@@ -29,66 +29,59 @@ import GameBird from "./pages/Games/JumpingBird/Index";
 import SpacePoint from "./pages/Games/SpacePoint/SpacePoint";
 import Education from "./pages/Education";
 import Experience from "./pages/Experience";
+import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
 
-const AppRoutes = () => (
-  <Routes>
-    {/* Not Found */}
-    <Route path="*" element={<NotFound />} />
+const AppRoutes = () => {
+  const isAuthenticated = useIsAuthenticated();
 
-    {/* About */}
-    <Route path="/" element={<About />} />
+  return (
+    <Routes>
+      {/* Not Found */}
+      <Route path="*" element={<NotFound />} />
 
-    {/* Education */}
-    <Route path="/education" element={<Education />} />
+      {/* Public Routes */}
+      <Route path="/" element={<About />} />
+      <Route path="/education" element={<Education />} />
+      <Route path="/experience" element={<Experience />} />
+      <Route path="/Store" element={<Home />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/forgot" element={<ForgotPassword />} />
 
-    {/* Experience */}
-    <Route path="/experience" element={<Experience />} />
+      {/* Protected Routes */}
+      <Route path="/profile" element={isAuthenticated? <Profile /> : <Navigate to="/login" />} />
+      <Route path="/change-password" element={isAuthenticated ? <ChangePassword /> : <Navigate to="/login" />} />
+      <Route path="/profile-picture" element={isAuthenticated ? <ProfilePicture /> : <Navigate to="/login" />} />
+      <Route path="/market" element={isAuthenticated ? <Store /> : <Navigate to="/login" />} />
+      <Route path="/market/flash-sale" element={isAuthenticated ? <FlashSale /> : <Navigate to="/login" />} />
+      <Route path="/product/:id" element={isAuthenticated ? <Product /> : <Navigate to="/login" />} />
+      <Route path="/cart" element={isAuthenticated ? <Cart /> : <Navigate to="/login" />} />
+      <Route path="/orders" element={isAuthenticated ? <Order /> : <Navigate to="/login" />} />
+      <Route path="/wishlist" element={isAuthenticated ? <WishList /> : <Navigate to="/login" />} />
 
-    {/* Store */}
-    <Route path="/Store" element={<Home />} />
+      {/* Admin Routes */}
+      <Route path="/admin/dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />} />
+      <Route path="/admin/products" element={isAuthenticated ? <ProductAdmin /> : <Navigate to="/login" />} />
+      <Route path="/admin/products/add" element={isAuthenticated ? <EditProduct /> : <Navigate to="/login" />} />
+      <Route path="/admin/products/:productId" element={isAuthenticated ? <EditProduct /> : <Navigate to="/login" />} />
+      <Route path="/admin/orders" element={isAuthenticated ? <AdminOrder /> : <Navigate to="/login" />} />
+      <Route path="/admin/banner" element={isAuthenticated ? <AdminBanner /> : <Navigate to="/login" />} />
+      <Route path="/admin/banner/:bannerId" element={isAuthenticated ? <EditBanner /> : <Navigate to="/login" />} />
 
-    {/* Contact */}
-    <Route path="/contact" element={<Contact />} />
+      {/* AI */}
+      <Route path="/ai/v1" element={<AiSelection />} />
+      <Route path="/ai/v1/image-gen" element={<ImageGen />} />
 
-    {/* Auth */}
-    <Route path="/login" element={<Login />} />
-    <Route path="/register" element={<Register />} />
-    <Route path="/forgot" element={<ForgotPassword />} />
+      {/* Game */}
+      <Route path="/itsu-game/v1/corner" element={<GameSelection />} />
+      <Route path="/itsu-game/v1/jumping-bird/" element={<GameBird />} />
+      <Route path="/itsu-game/v1/space-point" element={<SpacePoint />} />
 
-    {/* Profile */}
-    <Route path="/profile" element={<Profile />} />
-    <Route path="/change-password" element={<ChangePassword />} />
-    <Route path="/profile-picture" element={<ProfilePicture />} />
-
-    {/* Store */}
-    <Route path="/market" element={<Store />} />
-    <Route path="/market/flash-sale" element={<FlashSale />} />
-    <Route path="/product/:id" element={<Product />} />
-    <Route path="/cart" element={<Cart />} />
-    <Route path="/orders" element={<Order />} />
-    <Route path="/wishlist" element={<WishList />} />
-
-    {/* Admin */}
-    <Route path="/admin/dashboard" element={<Dashboard />} />
-    <Route path="/admin/products" element={<ProductAdmin />} />
-    <Route path="/admin/products/add" element={<EditProduct />} />
-    <Route path="/admin/products/:productId" element={<EditProduct />} />
-    <Route path="/admin/orders" element={<AdminOrder />} />
-    <Route path="/admin/banner" element={<AdminBanner />} />
-    <Route path="/admin/banner/:bannerId" element={<EditBanner />} />
-
-    {/* AI */}
-    <Route path="/ai/v1" element={<AiSelection />} />
-    <Route path="/ai/v1/image-gen" element={<ImageGen />} />
-
-    {/* Game */}
-    <Route path="/itsu-game/v1/corner" element={<GameSelection />} />
-    <Route path="/itsu-game/v1/jumping-bird/" element={<GameBird />} />
-    <Route path="/itsu-game/v1/space-point" element={<SpacePoint />} />
-
-    {/* Unused */}
-    {/* <Route path='/old' element={<IndexOld />} /> */}
-  </Routes>
-);
+      {/* Unused */}
+      {/* <Route path='/old' element={<IndexOld />} /> */}
+    </Routes>
+  );
+};
 
 export default AppRoutes;

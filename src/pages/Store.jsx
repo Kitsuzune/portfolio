@@ -169,52 +169,55 @@ const Store = () => {
         </Row>
 
         <Row className="py-3">
-          <ScrollMenu>
-            {products.map((product, index) => (
-              <Card className="mx-4" style={{ border: 0 }} key={index} onClick={() => navigate('/product/' + product.id)}>
-                <Row className="bg-white rounded-t-lg">
-                  <img
-                    src={product.productImage}
-                    style={{
-                      width: 200,
-                      height: 200,
-                    }}
-                  />
-                </Row>
-                <Row className="bg-black w-[200px] py-2 rounded-b-lg">
-                  <span className="text-white text-[14px] font-sans">
-                    {product.name.length > 20
-                      ? product.name.substring(0, 20) + '...'
-                      : product.name}
-                  </span>
-                  <span className="text-[#DB4444] text-[14px] font-sans">
-                    Rp. <NumberFormatter number={product.price} />
-                  </span>
-                  <div className="flex w-auto">
-                    <ReactStars
-                      count={5}
-                      size={24}
-                      isHalf={true}
-                      edit={false}
-                      emptyIcon={<i className="far fa-star"></i>}
-                      halfIcon={<i className="fa fa-star-half-alt"></i>}
-                      fullIcon={<i className="fa fa-star"></i>}
-                      activeColor="#ffd700"
-                      value={product.rating}
+          <div className="flex overflow-x-auto bg-gray-100 bg-opacity-10 rounded-lg px-2 py-4 ">
+            <ScrollMenu>
+              {products.map((product, index) => (
+                <Card className="mx-4 cursor-pointer hover:scale-95 transition-all duration-300" style={{ border: 0 }} key={index} onClick={() => navigate('/product/' + product.id)}>
+                  <Row className="bg-white rounded-t-lg">
+                    <img
+                      src={product.productImage}
+                      style={{
+                        width: 200,
+                        height: 200,
+                      }}
+                      className="object-cover p-0 m-0 rounded-t-lg"
                     />
-                    <span className="text-white text-[18px] font-sans flex items-center">
-                      ({product.rating})
+                  </Row>
+                  <Row className="bg-black w-[200px] py-2 rounded-b-lg">
+                    <span className="text-white text-[14px] font-sans">
+                      {product.name.length > 20
+                        ? product.name.substring(0, 20) + '...'
+                        : product.name}
                     </span>
-                  </div>
-                </Row>
-              </Card>
-            ))}
-          </ScrollMenu>
+                    <span className="text-[#DB4444] text-[14px] font-sans">
+                      Rp. <NumberFormatter number={product.price} />
+                    </span>
+                    <div className="flex w-auto">
+                      <ReactStars
+                        count={5}
+                        size={24}
+                        isHalf={true}
+                        edit={false}
+                        emptyIcon={<i className="far fa-star"></i>}
+                        halfIcon={<i className="fa fa-star-half-alt"></i>}
+                        fullIcon={<i className="fa fa-star"></i>}
+                        activeColor="#ffd700"
+                        value={product.rating}
+                      />
+                      <span className="text-white text-[18px] font-sans flex items-center">
+                        ({product.rating})
+                      </span>
+                    </div>
+                  </Row>
+                </Card>
+              ))}
+            </ScrollMenu>
+          </div>
         </Row>
 
         <Row>
           <div className="flex justify-center w-full mt-4">
-            <button className="bg-[#DB4444] text-white text-[18px] font-sans px-20 h-[70px] rounded-[4px]" onClick={() => navigate('/market')}>
+            <button className="bg-[#DB4444] hover:bg-[#DB4444]/80 transition-all duration-300 text-white text-[18px] font-sans px-20 h-[70px] rounded-[4px]" onClick={() => navigate('/market')}>
               View All Product
             </button>
           </div>
@@ -249,7 +252,7 @@ const Store = () => {
             </span>
           </Col>
           <Col md={6} className="flex justify-end">
-            <button className="bg-[#DB4444] text-white text-[18px] font-sans px-20 h-[70px] rounded-[4px]" onClick={() => navigate('/market')}>
+            <button className="bg-[#DB4444] hover:bg-[#DB4444]/80 transition-all duration-300 text-white text-[18px] font-sans px-20 h-[70px] rounded-[4px]" onClick={() => navigate('/market')}>
               View All
             </button>
           </Col>
@@ -258,8 +261,7 @@ const Store = () => {
         <Row className="py-3 flex justify-center">
           {bestSellingProducts.map((product, index) => (
             <Card
-              className="mx-4 mb-4 w-auto cursor-pointer"
-              style={{ border: 0 }}
+              className="mx-4 mb-4 w-auto cursor-pointer hover:scale-105 transition-all duration-300 border-2 border-white rounded-lg hover:shadow-lg hover:shadow-white"
               key={index}
               onClick={() => navigate('/product/' + product.id)}
             >
@@ -270,9 +272,10 @@ const Store = () => {
                     width: 200,
                     height: 200,
                   }}
+                  className="object-cover m-0 p-0 rounded-t-lg"
                 />
               </Row>
-              <Row className="bg-black w-[200px] py-2">
+              <Row className="bg-black w-[200px] py-2 rounded-b-lg border-t-2 border-white ">
                 <span className="text-white text-[14px] font-sans">
                   {product.name.length > 20
                     ? product.name.substring(0, 20) + '...'
@@ -335,8 +338,7 @@ const Store = () => {
         <Row className="py-3 flex justify-center">
           {products.map((product, index) => (
             <Card
-              className="mx-4 mb-4 w-auto cursor-pointer"
-              style={{ border: 0 }}
+              className="mx-4 mb-4 w-auto cursor-pointer hover:scale-105 transition-all duration-300 border-2 border-white rounded-lg hover:shadow-lg hover:shadow-white"
               key={index}
               onClick={() => navigate('/product/' + product.id)}
             >
@@ -347,9 +349,10 @@ const Store = () => {
                     width: 200,
                     height: 200,
                   }}
+                  className="object-cover m-0 p-0 rounded-t-lg"
                 />
               </Row>
-              <Row className="bg-black w-[200px] py-2">
+              <Row className="bg-black w-[200px] py-2 rounded-b-lg border-t-2 border-white">
                 <span className="text-white text-[14px] font-sans">
                   {/* {product.name} */}
                   {product.name.length > 20
@@ -382,7 +385,7 @@ const Store = () => {
 
         <Row>
           <div className="flex justify-center w-full mt-4">
-            <button className="bg-[#DB4444] text-white text-[18px] font-sans px-20 h-[70px] rounded-[4px]" onClick={() => navigate('/market')}>
+            <button className="bg-[#DB4444] hover:bg-[#DB4444]/80 transition-all duration-300 text-white text-[18px] font-sans px-20 h-[70px] rounded-[4px]" onClick={() => navigate('/market')}>
               View All Product
             </button>
           </div>
@@ -414,13 +417,15 @@ const Store = () => {
             <div className='relative h-full'>
               <img
                 src={newArrival01?.image}
-                alt="Lukisan Kanvas"
+                alt="Source Code"
                 className='w-full h-full opacity-15'
               />
               <div className='absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent' />
               <div className='absolute bottom-4 left-4 text-white'>
-                <h3 className='text-2xl'>Lukisan Kanvas</h3>
-                <p>Beautiful and nice canvas painting</p>
+                <h3 className='text-2xl'>Source Code</h3>
+                <p>
+                  A collection of source code for your project.
+                </p>
                 <Button variant='light' className='mt-2'>Shop Now</Button>
               </div>
             </div>
@@ -436,8 +441,10 @@ const Store = () => {
                   />
                   <div className='absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent' />
                   <div className='absolute bottom-4 left-4 text-white'>
-                    <h3 className='text-2xl'>Canvas Collections</h3>
-                    <p>Featured canvas collections that give you another vibe.</p>
+                    <h3 className='text-2xl'>Course Material</h3>
+                    <p>
+                      Learn from the best. Without high price.
+                    </p>
                     <Button variant='light' className='mt-2'>Shop Now</Button>
                   </div>
                 </div>
@@ -451,8 +458,10 @@ const Store = () => {
                   />
                   <div className='absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent' />
                   <div className='absolute bottom-4 left-4 text-white'>
-                    <h3 className='text-2xl'>Lukisan</h3>
-                    <p>Original painting</p>
+                    <h3 className='text-2xl'>Digital Game Key</h3>
+                    <p>
+                      Purchase your favorite game.
+                    </p>
                     <Button variant='light' className='mt-2'>Shop Now</Button>
                   </div>
                 </div>
@@ -466,8 +475,10 @@ const Store = () => {
                   />
                   <div className='absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent' />
                   <div className='absolute bottom-4 left-4 text-white'>
-                    <h3 className='text-2xl'>Lukisan</h3>
-                    <p>Original painting</p>
+                    <h3 className='text-2xl'>Game Item</h3>
+                    <p>
+                      A Pair of microtransation.
+                    </p>
                     <Button variant='light' className='mt-2'>Shop Now</Button>
                   </div>
                 </div>

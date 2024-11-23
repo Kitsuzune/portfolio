@@ -46,12 +46,16 @@ const Contact = () => {
                                 <div className="p-[10px] bg-red-500 rounded-full">
                                     <Icon icon="solar:phone-linear" style={{ fontSize: '30px', color: 'white' }} />
                                 </div>
-                                <span className="text-white ml-5 text-[20px]">Call To Us</span>
+                                <span className="text-white ml-5 text-[20px]">Inquiry Open 24/7</span>
                             </div>
 
                             <div className='mt-4 flex flex-col'>
-                                <span className="text-[18px] text-white">We are available 24/7, 7 days a week.</span>
-                                <span className="text-[18px] text-white mt-3">Call us at 08123456789</span>
+                                <span className="text-[18px] text-white">
+                                    Hi, I'm Ready To Help You Whenever You Need
+                                </span>
+                                <span className="text-[18px] text-white mt-3">
+                                    Call Me By Whatsapp At +62 896 6467 5764
+                                </span>
                             </div>
                         </div>
 
@@ -60,12 +64,16 @@ const Contact = () => {
                                 <div className="p-[10px] bg-red-500 rounded-full">
                                     <Icon icon="octicon:mail-24" style={{ fontSize: '30px', color: 'white' }} />
                                 </div>
-                                <span className="text-white ml-5 text-[20px]">Write To Us</span>
+                                <span className="text-white ml-5 text-[20px]">Write Your Opinion</span>
                             </div>
 
                             <div className='mt-4 flex flex-col'>
-                                <span className="text-[18px] text-white">Fill out our form and we will contact you within 24 hours.</span>
-                                <span className="text-[18px] text-white mt-3">Emails: customer@IT’S U.com</span>
+                                <span className="text-[18px] text-white">
+                                    Fill out the form below and I will contact you if you have any questions.
+                                </span>
+                                <span className="text-[18px] text-white mt-3">
+                                    Simply fill this form -&gt;
+                                </span>
                             </div>
                         </div>
 

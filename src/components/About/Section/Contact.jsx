@@ -1,9 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const Contact = () => {
     const componentRef = useRef();
+    const navigate = useNavigate();
     useEffect(() => {
         const ctx = gsap.context(() => {
             // Animasi teks muncul dari kiri
@@ -46,23 +49,29 @@ const Contact = () => {
                         Let's Connect
                     </h1>
                     <div className="buttons flex flex-col sm:flex-row justify-center gap-4">
-                        <button className="text-item px-4 sm:px-6 py-2 sm:py-3 border border-white text-white rounded-lg bg-transparent">
+                        <Button 
+                            variant="outline-light"
+                            onClick={() => navigate('/projects')}
+                        >
                             See the Latest Works
-                        </button>
-                        <button className="text-item px-4 sm:px-6 py-2 sm:py-3 border border-white text-white rounded-lg bg-transparent">
+                        </Button>
+                        <Button 
+                            variant="outline-light"
+                            onClick={() => navigate('/contact')}
+                        >
                             Contact Me
-                        </button>
+                        </Button>
                     </div>
                     <div className="social-icons flex flex-col sm:flex-row justify-between gap-4 mt-4">
-                        <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                        <a href="https://github.com/Kitsuzune" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                             <FaGithub className="text-white text-2xl" />
                             <span className="text-white">kitsuzune</span>
                         </a>
-                        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                        <a href="https://linkedin.com/in/kitsuzune" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                             <FaLinkedin className="text-white text-2xl" />
                             <span className="text-white">linkedin.com/in/kitsuzune/</span>
                         </a>
-                        <a href="https://instagram.com/yourusername" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                        <a href="https://www.instagram.com/kitsuzune089/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                             <FaInstagram className="text-white text-2xl" />
                             <span className="text-white">@kitsuzune089</span>
                         </a>

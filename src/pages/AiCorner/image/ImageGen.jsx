@@ -79,6 +79,12 @@ const ImageGen = () => {
                                 {loading ? 'Generating...' : 'Generate'}
                             </button>
                         </div>
+                        <p className='text-gray-400 mt-3 inline-block'>
+                            *This is a free service provided by <a href='https://huggingface.co/' className='text-blue-500'>Hugging Face</a>
+                        </p>
+                        <p className='text-red-400 inline-block'>
+                            *If AI dont generate image, please try again for 1 minute. Because AI need to wake up first to save some memory.
+                        </p>
                     </Col>
                 </Row>
 
@@ -101,62 +107,6 @@ const ImageGen = () => {
                                     >
                                         Download Image
                                     </button>
-                                    {!order && (
-                                        <div>
-                                            <p className="text-gray-400 mb-4">Do you want to order this custom image product?</p>
-                                            <button
-                                                onClick={() => setOrder(true)}
-                                                className="mb-4 p-2 mr-2 px-5 bg-green-500 text-white rounded-lg transition duration-300 ease-in-out hover:bg-green-600"
-                                            >
-                                                Yes
-                                            </button>
-                                            <button
-                                                onClick={() => setImage(null)}
-                                                className="mb-4 p-2 px-5 bg-red-500 text-white rounded-lg transition duration-300 ease-in-out hover:bg-red-600"
-                                            >
-                                                No
-                                            </button>
-                                        </div>
-                                    )}
-                                    {order && !productType && (
-                                        <div className='flex flex-col gap-4'>
-                                            <p className="text-gray-400">Select product type:</p>
-                                            <div className='flex gap-4 justify-center'>
-                                                <button
-                                                    onClick={() => setProductType('canvas')}
-                                                    className="mb-2 p-2 bg-purple-500 text-white rounded-lg transition duration-300 ease-in-out hover:bg-purple-600"
-                                                >
-                                                    Canvas
-                                                </button>
-                                                <button
-                                                    onClick={() => setProductType('painting')}
-                                                    className="mb-2 p-2 bg-yellow-500 text-white rounded-lg transition duration-300 ease-in-out hover:bg-yellow-600"
-                                                >
-                                                    Painting
-                                                </button>
-                                                <button
-                                                    onClick={() => setProductType('plain clothes')}
-                                                    className="mb-2 p-2 bg-pink-500 text-white rounded-lg transition duration-300 ease-in-out hover:bg-pink-600"
-                                                >
-                                                    Plain Clothes
-                                                </button>
-                                            </div>
-                                        </div>
-                                    )}
-                                    {productType && !checkout && (
-                                        <div>
-                                            <p className="text-gray-400 mb-4">You selected: {productType}</p>
-                                            <button
-                                                onClick={() => setCheckout(true)}
-                                                className="mb-4 p-2 bg-orange-500 text-white rounded-lg transition duration-300 ease-in-out hover:bg-orange-600"
-                                            >
-                                                Checkout
-                                            </button>
-                                        </div>
-                                    )}
-                                    {checkout && (
-                                        <p className="text-gray-400">Proceeding to checkout...</p>
-                                    )}
                                 </div>
                             </div>
                         )}

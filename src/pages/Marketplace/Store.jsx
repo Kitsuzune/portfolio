@@ -93,8 +93,7 @@ const Store = () => {
                         <Row className="py-3 flex justify-center">
                             {filteredProducts.map((product, index) => (
                                 <Card
-                                    className="mx-4 mb-4 w-auto cursor-pointer"
-                                    style={{ border: 0 }}
+                                    className="mx-4 mb-4 w-auto cursor-pointer hover:scale-105 transition-all duration-300 border-2 border-white rounded-lg hover:shadow-lg hover:shadow-white"
                                     key={index}
                                     onClick={() => navigate('/product/' + product.id)}
                                 >
@@ -105,12 +104,13 @@ const Store = () => {
                                                 width: 200,
                                                 height: 200,
                                             }}
+                                            className="object-cover m-0 p-0 rounded-t-lg"
                                         />
                                     </Row>
-                                    <Row className="bg-black w-[200px] py-2">
+                                    <Row className="bg-black w-[200px] py-2 rounded-b-lg border-t-2 border-white">
                                         <span className="text-white text-[14px]">
-                                            {product.name.length > 20
-                                                ? product.name.substring(0, 20) + '...'
+                                            {product.name.length > 15
+                                                ? product.name.substring(0, 15) + '...'
                                                 : product.name}
                                         </span>
                                         <span className="text-[#DB4444] text-[14px] font-sans">
@@ -126,9 +126,10 @@ const Store = () => {
                                                 halfIcon={<i className="fa fa-star-half-alt"></i>}
                                                 fullIcon={<i className="fa fa-star"></i>}
                                                 activeColor="#ffd700"
+                                                value={product.rating}
                                             />
                                             <span className="text-white text-[18px] font-sans flex items-center">
-                                                (0)
+                                                ({product.rating})
                                             </span>
                                         </div>
                                     </Row>

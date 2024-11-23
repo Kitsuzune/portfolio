@@ -1,94 +1,92 @@
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-import Home from "./pages/Store";
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Login from "./pages/Auth/Login";
-import Register from "./pages/Auth/Register";
-import ForgotPassword from "./pages/Auth/Forgot";
-import NotFound from "./pages/404";
-import Profile from "./pages/User/Menu/Profile";
-import ChangePassword from "./pages/User/Menu/ChangePassword";
-import ProfilePicture from "./pages/User/Menu/ProfilePicture";
-import Store from "./pages/Marketplace/Store";
-import FlashSale from "./pages/Marketplace/FlashSale";
-import Product from "./pages/Marketplace/Detail.jsx/Product";
-import Cart from "./pages/Transaction/Cart";
-import Dashboard from "./pages/Admin/Menu/Dashboard/Dashboard";
-import ProductAdmin from "./pages/Admin/Menu/Product/Product";
-import EditProduct from "./pages/Admin/Menu/Product/EditProduct";
-import Order from "./pages/User/Menu/Order";
-import AdminOrder from "./pages/Admin/Menu/Orders/Order";
-import WishList from "./pages/User/Menu/WishList";
-import AdminBanner from "./pages/Admin/Menu/Banner/Banner";
-import EditBanner from "./pages/Admin/Menu/Banner/EditBanner";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import ImageGen from "./pages/AiCorner/image/ImageGen";
-import AiSelection from "./pages/AiCorner/Selection";
-import GameSelection from "./pages/Games/Selection";
-import GameBird from "./pages/Games/JumpingBird/Index";
-import SpacePoint from "./pages/Games/SpacePoint/SpacePoint";
+import gsap from "gsap";
+import AppRoutes from './Route';
 
 function App() {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith("/admin");
+  const [counter, setCounter] = useState(0);
+  const [isIntroComplete, setIsIntroComplete] = useState(() => {
+    const introComplete = localStorage.getItem('introComplete') === 'true';
+    const lastIntroTime = localStorage.getItem('lastIntroTime');
+    const oneHour = 60 * 60 * 1000;
+    return introComplete && (Date.now() - lastIntroTime < oneHour);
+  });
+
+  useEffect(() => {
+    if (!isIntroComplete) {
+      const interval = setInterval(() => {
+        setCounter(prevCounter => {
+          if (prevCounter < 100) {
+            return prevCounter + 1;
+          } else {
+            clearInterval(interval);
+            return prevCounter;
+          }
+        });
+      }, 30);
+
+      return () => clearInterval(interval);
+    }
+  }, [isIntroComplete]);
+
+  useEffect(() => {
+    if (counter === 100 && !isIntroComplete) {
+      gsap.to(".counter-intro", { 
+        opacity: 0, 
+        duration: 1, 
+        onComplete: () => {
+          setTimeout(() => {
+            document.querySelector(".counter-intro").style.display = "none";
+            document.querySelector(".overlay-intro").style.display = "none";
+            localStorage.setItem('introComplete', 'true');
+            localStorage.setItem('lastIntroTime', Date.now());
+            setIsIntroComplete(true);
+          }, 3500);
+        }
+      });
+      gsap.to(".bar", {
+        delay: 3,
+        height: 0,
+        stagger: {
+          amount: 0.5
+        },
+        ease: "power4.inOut"
+      });
+    }
+  }, [counter, isIntroComplete]);
 
   return (
     <>
+      {!isIntroComplete && (
+        <div className="overlay-intro fixed w-screen h-screen z-50 flex">
+          <div className='bar' />
+          <div className='bar' />
+          <div className='bar' />
+          <div className='bar' />
+          <div className='bar' />
+          <div className='bar' />
+          <div className='bar' />
+          <div className='bar' />
+          <div className='bar' />
+          <div className='bar' />
+          <div className='bar' />
+          <div className='bar' />
+          <div className='bar' />
+          <div className='bar' />
+        </div>
+      )}
+
+      {!isIntroComplete && (
+        <div className="counter-intro">
+          {counter}.
+        </div>
+      )}
       {!isAdminRoute && <Navbar />}
-      <Routes>
-        {/* Not Found */}
-        <Route path="*" element={<NotFound />} />
-
-        {/* Home */}
-        <Route path="/Store" element={<Home />} />
-
-        {/* About */}
-        <Route path="/" element={<About />} />
-
-        {/* Contact */}
-        <Route path="/contact" element={<Contact />} />
-
-        {/* Auth */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/forgot" element={<ForgotPassword />} />
-
-        {/* Profile */}
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/change-password" element={<ChangePassword />} />
-        <Route path="/profile-picture" element={<ProfilePicture />} />
-
-        {/* Store */}
-        <Route path="/market" element={<Store />} />
-        <Route path="/market/flash-sale" element={<FlashSale />} />
-        <Route path="/product/:id" element={<Product />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/orders" element={<Order />} />
-        <Route path="/wishlist" element={<WishList />} />
-
-        {/* Admin */}
-        <Route path="/admin/dashboard" element={<Dashboard />} />
-        <Route path="/admin/products" element={<ProductAdmin />} />
-        <Route path="/admin/products/add" element={<EditProduct />} />
-        <Route path="/admin/products/:productId" element={<EditProduct />} />
-        <Route path="/admin/orders" element={<AdminOrder />} />
-        <Route path="/admin/banner" element={<AdminBanner />} />
-        <Route path="/admin/banner/:bannerId" element={<EditBanner />} />
-
-        {/* AI */}
-        <Route path="/ai/v1" element={<AiSelection />} />
-        <Route path="/ai/v1/image-gen" element={<ImageGen />} />
-
-        {/* Game */}
-        <Route path="/itsu-game/v1/corner" element={<GameSelection />} />
-        <Route path="/itsu-game/v1/jumping-bird/" element={<GameBird />} />
-
-        <Route path="/itsu-game/v1/space-point" element={<SpacePoint />} />
-
-        {/* Unused */}
-        {/* <Route path='/old' element={<IndexOld />} /> */}
-      </Routes>
+      <AppRoutes />
       {!isAdminRoute && <Footer />}
     </>
   );

@@ -142,6 +142,7 @@ const FlashSale = () => {
                                             style={{
                                                 width: 200,
                                                 height: 200,
+                                                objectFit: 'cover'
                                             }}
                                         />
                                     </Row>

@@ -268,7 +268,7 @@ const Education = () => {
                     </Col>
                 </Row>
 
-                <Row className='mt-5'>
+                <Row className='mt-5 d-none d-md-block'>
                     <Col md={12}>
 
                         <div className='flex flex-col justify-center items-center'>

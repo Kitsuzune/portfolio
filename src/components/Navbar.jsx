@@ -34,7 +34,7 @@ function Navbar() {
     };
 
     return (
-        <Row fluid className='bg-black md:pt-5'>
+        <Row fluid className='bg-black pt-5'>
             <Container fluid className='bg-[#0F0F0F]'>
                 <Row className='w-[90%] mx-auto py-5 d-flex justify-content-between align-items-center'>
                     <Col xs={6} md={2} className='d-flex justify-content-start align-items-center'>
@@ -60,13 +60,17 @@ function Navbar() {
                             Education
                         </Link>
 
+                        <Link to="/projects" className='text-white text-[16px] cursor-pointer hover:scale-110 transition duration-300 ease-in-out' style={{ textDecoration: 'none' }}>
+                            Projects
+                        </Link>
+
                         <Link to="/store" className='text-white text-[16px] cursor-pointer hover:scale-110 transition duration-300 ease-in-out' style={{ textDecoration: 'none' }}>
                             My Store
                         </Link>
 
-                        <Link to="/contact" className='text-white text-[16px] cursor-pointer hover:scale-110 transition duration-300 ease-in-out' style={{ textDecoration: 'none' }}>
+                        {/* <Link to="/contact" className='text-white text-[16px] cursor-pointer hover:scale-110 transition duration-300 ease-in-out' style={{ textDecoration: 'none' }}>
                             Contact
-                        </Link>
+                        </Link> */}
 
                         {/* {isAuthenticated && (
                             <Link to="/market" className='text-white text-[16px] cursor-pointer hover:scale-110 transition duration-300 ease-in-out' style={{ textDecoration: 'none' }}>
@@ -192,7 +196,7 @@ function Navbar() {
                                             <span className='text-[16px] font-pixel font-bold cursor-pointer'>0 Ruby</span>
                                             <img src={ruby} alt="ruby" className="w-[20px] h-[20px] scale-150 ml-2" />
                                         </div>
-                                        <div 
+                                        <div
                                             className='flex gap-3 items-center justify-center bg-yellow-500 border-yellow-800 border-2 black_border hover:bg-black transition duration-300 ease-in-out hover:text-white w-full p-2 rounded-xl'
                                             onClick={() => {
                                                 navigate('/profile');
@@ -204,7 +208,7 @@ function Navbar() {
                                         </div>
                                     </div>
                                     <div className='grid grid-cols-2 gap-2 w-full my-2'>
-                                        <div 
+                                        <div
                                             className='flex gap-3 items-center justify-center bg-yellow-500 border-yellow-800 border-2 black_border hover:bg-black transition duration-300 ease-in-out hover:text-white w-full p-2 rounded-xl'
                                             onClick={() => {
                                                 navigate('/wishlist');
@@ -214,7 +218,7 @@ function Navbar() {
                                             <FaHeart />
                                             Favourites
                                         </div>
-                                        <div 
+                                        <div
                                             className='flex gap-3 items-center justify-center bg-yellow-500 border-yellow-800 border-2 black_border hover:bg-black transition duration-300 ease-in-out hover:text-white w-full p-2 rounded-xl'
                                             onClick={() => {
                                                 navigate('/cart');

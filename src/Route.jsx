@@ -30,6 +30,7 @@ import SpacePoint from "./pages/Games/SpacePoint/SpacePoint";
 import Education from "./pages/Education";
 import Experience from "./pages/Experience";
 import useIsAuthenticated from 'react-auth-kit/hooks/useIsAuthenticated';
+import Projects from './pages/Projects';
 
 const AppRoutes = () => {
   const isAuthenticated = useIsAuthenticated();
@@ -43,6 +44,7 @@ const AppRoutes = () => {
       <Route path="/" element={<About />} />
       <Route path="/education" element={<Education />} />
       <Route path="/experience" element={<Experience />} />
+      <Route path="/projects" element={<Projects />} />
       <Route path="/Store" element={<Home />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/login" element={<Login />} />

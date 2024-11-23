@@ -11,6 +11,10 @@
   font-family: 'Pixelify Sans';
 }
 
+.font-audiowide {
+  font-family: 'Audiowide', sans-serif;
+}
+
 
 .breadcrumb-item a {
   color: red

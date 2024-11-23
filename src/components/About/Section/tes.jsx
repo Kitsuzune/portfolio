@@ -1,254 +1,132 @@
-// "use client"
-// import { WavyBackground } from "./ui/wavy-background"
-// import gsap from "gsap"
-// import { useGSAP } from "@gsap/react"
-// import ScrollTrigger from "gsap/ScrollTrigger"
+<div className='bg-slate-500 bg-opacity-30 rounded-xl p-5 mt-40'>
+<Row className='mt-5'>
+    <Col xs={12} md={5} className='flex items-center'>
+        <div>
+            <div className='flex items-center'>
+                <span className='text-white font-audiowide text-[60px]'>
+                    01
+                </span>
+            </div>
 
-// gsap.registerPlugin(ScrollTrigger)
+            <div className='flex flex-col'>
+                <span className="text-[42px] text-white font-bold inline-block">
+                    Virtual Office Order & Company Profile
+                </span>
 
-// function Hero() {
+                <span className="text-[18px] text-white mt-3">
+                    Awan Kusuma is a company that provides virtual office services and company profiles.
+                </span>
+            </div>
+        </div>
+    </Col>
 
-//     useGSAP(()=>{
-//         let tl = gsap.timeline({
-//             scrollTrigger: {
-//                 trigger: ".home",
-//                 start: "top top",
-//                 end: "bottom top",
-//                 scrub: 3,
-//                 pin: true,
-//             }
-//         })
-//         tl.to(".vid",{
-//             clipPath: 'circle(0% at 50% 50%)'
-//         },'a')
-//         tl.to(".bg",{
-//             scale: 1
-//         },'a')
-//         tl.to(".lt",{
-//             x: -250,
-//             delay: 0.1
-//         },'b')
-//         tl.to(".rt",{
-//             x: 250,
-//             delay: 0.1
-//         },'b')
-//     })
+    <Col xs={12} md={7} className='d-none d-lg-block'>
+        <div>
+            <div className='flex items-center justify-center'>
 
-//   return (
-//     <div className="home w-full h-screen relative overflow-hidden">
-//       <div className="vid z-[3] w-full h-full overflow-hidden" style={{clipPath: 'circle(100% at 50% 50%)'}}>
-//         <video className="w-full h-full object-cover" autoPlay muted loop>
-//             <source src="abstractbg.mp4" type="video/mp4"/>
-//         </video>
-//       </div>
-//       <div className="bg z-[-1] scale-[3] w-full h-screen absolute top-0 left-0">
-//         <WavyBackground>
-//             <div className="flex flex-col gap-5">
-//                 <div className="lt marqueecontainer flex gap-5 font-['PP_Neue_Machina_Inktrap_Medium']">
-//                     <div className="elem flex gap-5">
-//                         <h3 className="text-8xl font-semibold ">
-//                             quikcss
-//                         </h3>
-//                         <div className="w-[5rem] h-[5rem] overflow-hidden rounded-full">
-//                             <img src="https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" className="w-full h-full object-cover"/>
-//                         </div>
-//                     </div>
-//                     <div className="elem flex gap-5">
-//                         <h3 className="text-8xl font-semibold ">
-//                             quikcss
-//                         </h3>
-//                         <div className="w-[5rem] h-[5rem] overflow-hidden rounded-full">
-//                             <img src="https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" className="w-full h-full object-cover"/>
-//                         </div>
-//                     </div>
-//                     <div className="elem flex gap-5">
-//                         <h3 className="text-8xl font-semibold ">
-//                             quikcss
-//                         </h3>
-//                         <div className="w-[5rem] h-[5rem] overflow-hidden rounded-full">
-//                             <img src="https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" className="w-full h-full object-cover"/>
-//                         </div>
-//                     </div>
-//                     <div className="elem flex gap-5">
-//                         <h3 className="text-8xl font-semibold ">
-//                             quikcss
-//                         </h3>
-//                         <div className="w-[5rem] h-[5rem] overflow-hidden rounded-full">
-//                             <img src="https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" className="w-full h-full object-cover"/>
-//                         </div>
-//                     </div>
-//                     <div className="elem flex gap-5">
-//                         <h3 className="text-8xl font-semibold ">
-//                             quikcss
-//                         </h3>
-//                         <div className="w-[5rem] h-[5rem] overflow-hidden rounded-full">
-//                             <img src="https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" className="w-full h-full object-cover"/>
-//                         </div>
-//                     </div>
-//                     <div className="elem flex gap-5">
-//                         <h3 className="text-8xl font-semibold ">
-//                             quikcss
-//                         </h3>
-//                         <div className="w-[5rem] h-[5rem] overflow-hidden rounded-full">
-//                             <img src="https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" className="w-full h-full object-cover"/>
-//                         </div>
-//                     </div>
-//                 </div>
-//                 <div className="rt -translate-x-[10%] marqueecontainer flex gap-5 font-['PP_Neue_Machina_Inktrap_Medium']">
-//                     <div className="elem flex gap-5">
-//                         <h3 className="text-8xl font-semibold ">
-//                             quikcss
-//                         </h3>
-//                         <div className="w-[5rem] h-[5rem] overflow-hidden rounded-full">
-//                             <img src="https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" className="w-full h-full object-cover"/>
-//                         </div>
-//                     </div>
-//                     <div className="elem flex gap-5">
-//                         <h3 className="text-8xl font-semibold ">
-//                             quikcss
-//                         </h3>
-//                         <div className="w-[5rem] h-[5rem] overflow-hidden rounded-full">
-//                             <img src="https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" className="w-full h-full object-cover"/>
-//                         </div>
-//                     </div>
-//                     <div className="elem flex gap-5">
-//                         <h3 className="text-8xl font-semibold ">
-//                             quikcss
-//                         </h3>
-//                         <div className="w-[5rem] h-[5rem] overflow-hidden rounded-full">
-//                             <img src="https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" className="w-full h-full object-cover"/>
-//                         </div>
-//                     </div>
-//                     <div className="elem flex gap-5">
-//                         <h3 className="text-8xl font-semibold ">
-//                             quikcss
-//                         </h3>
-//                         <div className="w-[5rem] h-[5rem] overflow-hidden rounded-full">
-//                             <img src="https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" className="w-full h-full object-cover"/>
-//                         </div>
-//                     </div>
-//                     <div className="elem flex gap-5">
-//                         <h3 className="text-8xl font-semibold ">
-//                             quikcss
-//                         </h3>
-//                         <div className="w-[5rem] h-[5rem] overflow-hidden rounded-full">
-//                             <img src="https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" className="w-full h-full object-cover"/>
-//                         </div>
-//                     </div>
-//                     <div className="elem flex gap-5">
-//                         <h3 className="text-8xl font-semibold ">
-//                             quikcss
-//                         </h3>
-//                         <div className="w-[5rem] h-[5rem] overflow-hidden rounded-full">
-//                             <img src="https://images.unsplash.com/photo-1567095761054-7a02e69e5c43?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" className="w-full h-full object-cover"/>
-//                         </div>
-//                     </div>
-//                 </div>
+                <div className="border-2 rounded-xl orange_border">
+                    <div className='relative rounded-xl w-[500px] h-[240px] overflow-hidden'>
+                        <img
+                            src="https://img.freepik.com/premium-photo/road-closeup-bokeh-background_206268-1785.jpg"
+                            alt="Background"
+                            className="absolute scale-x-125 w-[600px] h-[300px] object-cover saturate-[1.5] brightness-90 pointer-events-none"
+                            style={{
+                                objectPosition: 'calc(-50% + (var(--x) * 30px)) calc(43% + (var(--y) * -20px))',
+                                zIndex: 1,
+                            }}
+                        />
 
-//             </div>
-//         </WavyBackground>
-//       </div>
-//     </div>
-//   )
-// }
+                        <img
+                            src="https://www.pngkey.com/png/full/68-684285_office-people-png-freeuse-download-professional-with-laptop.png"
+                            alt="Foreground"
+                            className="absolute w-[500px] h-[240px] object-cover pointer-events-none"
+                            style={{
+                                objectPosition: 'calc(-50% + (var(--x) * 40px)) calc(43% + (var(--y) * -40px))',
+                                zIndex: 2,
+                            }}
+                        />
 
-// export Hero
+                        <h3
+                            // className="absolute top-6 left-1/2 text-8xl font-bold uppercase text-white translate-x-[-50%]"
+                            className='absolute bottom-2 left-1/2 text-5xl font-bold uppercase text-[#d8ad50] translate-x-[-50%]'
+                            style={{
+                                transform: 'translate(calc(-50% + (var(--x) * -30px)), calc(var(--y) * -20px))',
+                                zIndex: 3,
+                            }}
+                        >
+                            Awan Kusuma
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </Col>
+</Row>
 
-// import React, { useEffect, useRef } from 'react'
-// import { gsap } from 'gsap'
-// import { ScrollTrigger } from 'gsap/ScrollTrigger'
-// import Me from './Section/Me';
-// import TechStack from './Section/TechStack';
-// import Contact from './Section/Contact';
+<Row className='mt-5'>
+    <Col md={12} className='flex flex-col items-center'>
+        <div>
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-center justify-between'>
+                <div className='bg-white rounded-xl'>
+                    <img src={awan1} alt="Background" className='object-cover w-full h-[200px] rounded-xl' />
+                </div>
+                <div className='bg-white rounded-xl'>
+                    <img src={awan2} alt="Background" className='object-cover w-full h-[200px] rounded-xl' />
+                </div>
+                <div className='bg-white rounded-xl'>
+                    <img src={awan3} alt="Background" className='object-cover w-full h-[200px] rounded-xl' />
+                </div>
+            </div>
+        </div>
+    </Col>
+</Row>
 
+<Row className='mt-3'>
+    <Col md={6} xs={12}>
+        <div className='flex flex-col'>
+            <span className='text-[29px] text-white font-bold inline-block'>
+                Projects Overview
+            </span>
 
-// const TimelineSec = () => {
-//     let component = useRef();
-//     gsap.registerPlugin(ScrollTrigger);
+            <div className='text-[18px] text-white mt-1 flex flex-col sm:flex-row'>
+                <span className='w-32'>Live Website</span>
+                <div className='flex-1'> <span className='hidden md:inline'>:</span> <a href="https://www.awankusuma.com" className='text-orange-500'>https://www.awankusuma.com</a></div>
+            </div>
+            <div className='text-[18px] text-white mt-1 flex flex-col sm:flex-row'>
+                <span className='w-32'>Source Code</span>
+                <div className='flex-1'> <span className='hidden md:inline'>:</span> <span className='text-red-500'>Confidential</span></div>
+            </div>
+            <div className='text-[18px] text-white mt-1 flex flex-col sm:flex-row'>
+                <span className='w-32'>Technology</span>
+                <div className='flex'> <span className='hidden md:inline'>:</span>
+                    <ul className='list-disc list-inside m-0'>
+                        <li>FrontEnd
+                            <ul className='list-disc list-inside ml-4'>
+                                <li>NextJS</li>
+                                <li>TailwindCSS</li>
+                            </ul>
+                        </li>
+                        <li>Backend
+                            <ul className='list-disc list-inside ml-4'>
+                                <li>NestJS</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </Col>
 
-//     useEffect(() => {
+    <Col md={6} xs={12}>
+        <div className='flex flex-col'>
+            <span className='text-[29px] text-white font-bold inline-block'>
+                Projects Description
+            </span>
 
-//         const tl1 = gsap.timeline();
-//         tl1.fromTo(
-//             ".about-me-content",
-//             { opacity: 0 },
-//             {
-//                 scrollTrigger: {
-//                     trigger: ".about-me-content",
-//                     start: "top bottom",
-//                     end: "top top",
-//                     scrub: 1
-//                 },
-//                 opacity: 1,
-//                 duration: 1
-//             }
-//         );
-
-//         let ctx = gsap.context(() => {
-//             const tl2 = gsap.timeline();
-//             tl2.to(
-//                 ".master-tl",
-//                 {
-//                     scrollTrigger: {
-//                         trigger: ".about-me-image",
-//                         endTrigger: ".tech-stack",
-//                         end: "10% bottom",
-//                         scrub: true,
-//                         pin: ".about-me-image",
-//                         // pinSpacing: true,
-//                         markers: true,
-//                     },
-//                     zIndex: 10
-//                 }
-//             );
-
-//             const tl3 = gsap.timeline({
-//                 scrollTrigger: {
-//                     pin: true, // pin the trigger element while active
-//                     start: "top bottom",
-//                     end: "bottom top",
-//                     scrub: 4,
-//                 },
-//             });
-
-//             tl3.fromTo(
-//                 ".tech-row",
-//                 {
-//                     x: (index) => {
-//                         return index % 2 === 0
-//                             ? gsap.utils.random(600, 400)
-//                             : gsap.utils.random(-600, -400);
-//                     },
-//                 },
-//                 {
-//                     x: (index) => {
-//                         return index % 2 === 0
-//                             ? gsap.utils.random(-600, -400)
-//                             : gsap.utils.random(600, 400);
-//                     },
-//                     ease: "power1.inOut",
-//                 },
-//             );
-            
-//         }, component);
-//         return () => ctx.revert();
-//     }, []);
-
-//     return (
-//         <div ref={component} className="master-tl w-full" >
-//             <div className="w-full lg:w-[90%] flex flex-col lg:flex-row">
-//                 <Me />
-//             </div>
-
-//             <div className='w-full flex flex-col justify-center items-center bg-[#ff1616] z-20' style={{ zIndex: 20 }}>
-//                 <TechStack />
-//             </div>
-
-//             <div className='w-full flex flex-col justify-center items-center z-20' style={{ zIndex: 20, clipPath: "circle(0% at 50% 50%)", }}>
-//                 <Contact />
-//             </div>
-//         </div>
-//     )
-// }
-
-// export TimelineSec
+            <span className='text-[18px] text-white mt-1 text-justify indent-10'>
+                Awan Kusuma is a company that provides virtual office services and company profiles. This website is a website that provides information about the company and the services they provide. This Website developed with 3 service, which are the main website, cms (admin panel), and api (backend).
+            </span>
+        </div>
+    </Col>
+</Row>
+</div>

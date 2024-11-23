@@ -222,18 +222,18 @@ const Experience = () => {
                             {experiences.map((exp, index) => (
                                 <div
                                     key={index}
-                                    className="relative mx-16 my-4 w-full"
+                                    className="relative mx-4 my-4 w-full md:mx-16"
                                     ref={el => cardRefs.current[index] = el}
                                 >
                                     <span
-                                        className="absolute py-1 z-10 px-3 -left-8 -top-2 -rotate-[10deg] black_border bg-violet-500 text-white font-bold"
+                                        className="absolute py-1 z-10 px-3 -left-4 -top-2 -rotate-[10deg] black_border bg-violet-500 text-white font-bold md:-left-8"
                                         ref={el => labelRefs.current[index] = el}
                                     >
                                         {exp.durationLabel}
                                     </span>
 
-                                    <div className="p-8 border-2 border-purple-700 orange_border bg-white rounded-xl z-20 grid grid-cols-6 space-x-14 w-full">
-                                        <div className='col-span-1'>
+                                    <div className="p-4 border-2 border-purple-700 orange_border bg-white rounded-xl z-20 grid grid-cols-1 md:grid-cols-6 space-x-0 md:space-x-14 w-full">
+                                        <div className='col-span-1 mb-4 md:mb-0'>
                                             <img
                                                 src={exp.logo}
                                                 alt="logo-nusantara"

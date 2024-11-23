@@ -270,6 +270,16 @@ function Navbar() {
                             <div
                                 className='flex items-center my-2 justify-center bg-orange-500 border-orange-800 border-2 black_border w-full p-2 rounded-xl hover:bg-black transition duration-300 ease-in-out hover:text-white'
                                 onClick={() => {
+                                    navigate('/projects');
+                                    toggleMenu();
+                                }}
+                            >
+                                <span className='text-[16px] font-bold cursor-pointer'>Projects</span>
+                            </div>
+
+                            <div
+                                className='flex items-center my-2 justify-center bg-orange-500 border-orange-800 border-2 black_border w-full p-2 rounded-xl hover:bg-black transition duration-300 ease-in-out hover:text-white'
+                                onClick={() => {
                                     navigate('/store');
                                     toggleMenu();
                                 }}

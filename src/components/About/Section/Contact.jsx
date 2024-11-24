@@ -49,7 +49,17 @@ const Contact = () => {
                         Let's Connect
                     </h1>
                     <div className="buttons flex flex-col sm:flex-row justify-center gap-4">
-                        <Button 
+                        <button
+                            className="relative bg-gray-50 text-[#000000] px-4 py-2 border rounded-md hover:bg-transparent hover:text-[#FFFFFF] hover:border-white hover:border transition-all duration-300"
+                            onClick={() => {
+                                window.open('https://drive.google.com/file/d/1xcieb1hipPUZCvWpkyqvng37Qw3Wt63N/view?usp=sharing', '_blank');
+                            }}
+                        >
+                            <span>
+                            Download CV
+                            </span>
+                        </button>
+                        <Button
                             variant="outline-light"
                             onClick={() => {
                                 navigate('/projects');
@@ -58,7 +68,7 @@ const Contact = () => {
                         >
                             See the Latest Works
                         </Button>
-                        <Button 
+                        <Button
                             variant="outline-light"
                             onClick={() => {
                                 navigate('/contact');

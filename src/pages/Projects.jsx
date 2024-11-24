@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import useBreadcrumbs from "use-react-router-breadcrumbs";
 import { Link } from 'react-router-dom'
@@ -14,6 +15,8 @@ import eska1 from '../assets/images/eska1.png'
 import eska2 from '../assets/images/eska2.png'
 import eska3 from '../assets/images/eska3.png'
 import Contact from '../components/About/Section/Contact';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
     const breadcrumbs = useBreadcrumbs();
@@ -71,6 +74,30 @@ const Projects = () => {
 
     useEffect(() => {
         let ctx = gsap.context(() => {
+            // Select all elements with the class 'card-projects'
+            const cards = document.querySelectorAll(".card-projects");
+
+            // Loop through each card and apply the animation
+            cards.forEach((card, index) => {
+                gsap.fromTo(card, {
+                    opacity: 0,
+                    y: 50,
+                    rotate: 3
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    rotate: 0,
+                    duration: 1,
+                    // delay: index * 0.2, // Add a delay for staggered animation
+                    scrollTrigger: {
+                        trigger: card,
+                        markers: true,
+                        start: "45% 90%",
+                        end: "45% 70%",
+                        scrub: 1
+                    }
+                });
+            });
 
             const tl = gsap.timeline({
                 scrollTrigger: {
@@ -134,7 +161,7 @@ const Projects = () => {
 
                 {/* Awan Kusuma */}
 
-                <div className='bg-slate-500 bg-opacity-30 rounded-xl p-5 mt-28'>
+                <div className='bg-slate-500 bg-opacity-30 rounded-xl p-5 mt-28 orange_border card-projects'>
                     <Row className='mt-5'>
                         <Col xs={12} md={5} className='flex items-center'>
                             <div>
@@ -204,13 +231,13 @@ const Projects = () => {
                             <div>
                                 <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-center justify-between'>
                                     <div className='bg-white rounded-xl'>
-                                        <img src={awan1} alt="Background" className='object-cover w-full h-[200px] rounded-xl' />
+                                        <img src={awan1} alt="Background" className='object-cover w-full h-[200px] rounded-xl orange_border_2' />
                                     </div>
                                     <div className='bg-white rounded-xl'>
-                                        <img src={awan2} alt="Background" className='object-cover w-full h-[200px] rounded-xl' />
+                                        <img src={awan2} alt="Background" className='object-cover w-full h-[200px] rounded-xl orange_border_2' />
                                     </div>
                                     <div className='bg-white rounded-xl'>
-                                        <img src={awan3} alt="Background" className='object-cover w-full h-[200px] rounded-xl' />
+                                        <img src={awan3} alt="Background" className='object-cover w-full h-[200px] rounded-xl orange_border_2' />
                                     </div>
                                 </div>
                             </div>
@@ -269,7 +296,7 @@ const Projects = () => {
 
                 {/* OttoOperator / OttoAdmin */}
 
-                <div className='bg-slate-500 bg-opacity-30 rounded-xl p-5 mt-28'>
+                <div className='bg-slate-500 bg-opacity-30 rounded-xl p-5 mt-28 orange_border card-projects'>
                     <Row className='mt-5'>
 
                         <Col xs={12} md={7} className='d-none d-lg-block'>
@@ -341,13 +368,13 @@ const Projects = () => {
                             <div>
                                 <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-center justify-between'>
                                     <div className='bg-white rounded-xl'>
-                                        <img src={op1} alt="Background" className='object-cover w-full h-[200px] rounded-xl' />
+                                        <img src={op1} alt="Background" className='object-cover w-full h-[200px] rounded-xl orange_border_2' />
                                     </div>
                                     <div className='bg-white rounded-xl'>
-                                        <img src={op2} alt="Background" className='object-cover w-full h-[200px] rounded-xl' />
+                                        <img src={op2} alt="Background" className='object-cover w-full h-[200px] rounded-xl orange_border_2' />
                                     </div>
                                     <div className='bg-white rounded-xl'>
-                                        <img src={op3} alt="Background" className='object-cover w-full h-[200px] rounded-xl' />
+                                        <img src={op3} alt="Background" className='object-cover w-full h-[200px] rounded-xl orange_border_2' />
                                     </div>
                                 </div>
                             </div>
@@ -409,7 +436,7 @@ const Projects = () => {
 
                 {/* ESKA */}
 
-                <div className='bg-slate-500 bg-opacity-30 rounded-xl p-5 mt-28'>
+                <div className='bg-slate-500 bg-opacity-30 rounded-xl p-5 mt-28 orange_border card-projects'>
                     <Row className='mt-5'>
                         <Col xs={12} md={5} className='flex items-center'>
                             <div>
@@ -479,13 +506,13 @@ const Projects = () => {
                             <div>
                                 <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-center justify-between'>
                                     <div className='bg-white rounded-xl'>
-                                        <img src={eska1} alt="Background" className='object-cover w-full h-[200px] rounded-xl' />
+                                        <img src={eska1} alt="Background" className='object-cover w-full h-[200px] rounded-xl orange_border_2' />
                                     </div>
                                     <div className='bg-white rounded-xl'>
-                                        <img src={eska2} alt="Background" className='object-cover w-full h-[200px] rounded-xl' />
+                                        <img src={eska2} alt="Background" className='object-cover w-full h-[200px] rounded-xl orange_border_2' />
                                     </div>
                                     <div className='bg-white rounded-xl'>
-                                        <img src={eska3} alt="Background" className='object-cover w-full h-[200px] rounded-xl' />
+                                        <img src={eska3} alt="Background" className='object-cover w-full h-[200px] rounded-xl orange_border_2' />
                                     </div>
                                 </div>
                             </div>
@@ -552,7 +579,7 @@ const Projects = () => {
                                     And Many Others
                                 </span>
 
-                                <Button 
+                                <Button
                                     variant='outline-light'
                                     onClick={() => {
                                         window.open('https://github.com/Kitsuzune', '_blank');

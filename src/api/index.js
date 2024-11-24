@@ -15,6 +15,13 @@ API.interceptors.request.use((req) => {
     return req;
 });
 
+// Web3Forms
+export const Web3Submit = (formData) => {
+    // formData.append("access_key", "a9f81336-9de1-41bc-8fbb-9a82d6cdb990");
+    formData.append("access_key", process.env.REACT_APP_URL_WEB3FORMS_ACCESS_KEY);
+    return axios.post("https://api.web3forms.com/submit", formData);
+};
+
 // Auth
 export const login = (formData) => API.post("/login", formData);
 export const register = (formData) => API.post("/register", formData);

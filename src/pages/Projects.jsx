@@ -501,7 +501,7 @@ const Projects = () => {
 
                                 <div className='text-[18px] text-white mt-1 flex flex-col sm:flex-row'>
                                     <span className='w-32'>Live Website</span>
-                                    <div className='flex-1'> <span className='hidden md:inline'>:</span> <a href="https://www.awankusuma.com" className='text-orange-500'>https://www.awankusuma.com</a></div>
+                                    <div className='flex-1'> <span className='hidden md:inline'>:</span> <a href="https://ska.kemendag.go.id/" className='text-orange-500'>https://ska.kemendag.go.id/</a></div>
                                 </div>
                                 <div className='text-[18px] text-white mt-1 flex flex-col sm:flex-row'>
                                     <span className='w-32'>Source Code</span>
@@ -552,7 +552,12 @@ const Projects = () => {
                                     And Many Others
                                 </span>
 
-                                <Button variant='outline-light'>
+                                <Button 
+                                    variant='outline-light'
+                                    onClick={() => {
+                                        window.open('https://github.com/Kitsuzune', '_blank');
+                                    }}
+                                >
                                     Check Github Pages
                                 </Button>
                             </div>

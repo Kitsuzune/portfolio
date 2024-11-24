@@ -1,11 +1,47 @@
-import React from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Col, Container, Row, Modal, Button } from 'react-bootstrap'
 import useBreadcrumbs from "use-react-router-breadcrumbs";
 import { Link } from 'react-router-dom'
 import { Icon } from '@iconify/react/dist/iconify.js'
+import { Web3Submit } from '../api';
 
 const Contact = () => {
     const breadcrumbs = useBreadcrumbs();
+    const [errors, setErrors] = useState({});
+    const [showModal, setShowModal] = useState(false);
+
+    const validateForm = (formData) => {
+        const newErrors = {};
+        if (!formData.get('name')) newErrors.name = 'Name is required';
+        if (!formData.get('email')) newErrors.email = 'Email is required';
+        if (!formData.get('phone')) newErrors.phone = 'Phone is required';
+        if (!formData.get('message')) newErrors.message = 'Message is required';
+        return newErrors;
+    };
+
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        const newErrors = validateForm(formData);
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return;
+        }
+
+        try {
+            console.log(process.env.REACT_APP_URL_WEB3FORMS_ACCESS_KEY);
+            const res = await Web3Submit(formData);
+
+            if (res.data.success) {
+                console.log("Success", res.data);
+                setShowModal(true);
+                event.target.reset();
+            }
+        } catch (error) {
+            console.error("Error submitting form", error);
+        }
+    };
 
     return (
         <Container fluid className="bg-[#0F0F0F] w-full flex justify-center m-0 px-0 pb-48">
@@ -81,26 +117,34 @@ const Contact = () => {
 
                     <Col md={6} className="flex items-center">
 
-                        <form className="p-5 rounded">
+                        <form className="p-5 rounded" onSubmit={onSubmit}>
                             <Row className="mb-4">
                                 <Col>
-                                    <input type="text" placeholder="Your Name *" className="w-full p-3 bg-white text-black rounded" />
+                                    <input type="text" name="name" placeholder="Your Name *" className="w-full p-3 bg-white text-black rounded" />
+
                                 </Col>
                                 <Col>
-                                    <input type="email" placeholder="Your Email *" className="w-full p-3 bg-white text-black rounded" />
+                                    <input type="email" name="email" placeholder="Your Email *" className="w-full p-3 bg-white text-black rounded" />
+
                                 </Col>
                                 <Col>
-                                    <input type="text" placeholder="Your Phone *" className="w-full p-3 bg-white text-black rounded" />
+                                    <input type="text" name="phone" placeholder="Your Phone *" className="w-full p-3 bg-white text-black rounded" />
+
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                    <textarea placeholder="Your Message" className="w-full p-3 bg-white text-black rounded h-32"></textarea>
+                                    <textarea name="message" placeholder="Your Message" className="w-full p-3 bg-white text-black rounded h-32"></textarea>
+
                                 </Col>
                             </Row>
                             <Row className="mt-4">
-                                <Col>
-                                    <button type="submit" className="w-full p-3 bg-red-500 text-white rounded">Send Message</button>
+                                <Col className='flex flex-col'>
+                                    <button type="submit" className="w-full p-3 bg-red-500 text-white rounded mb-2">Send Message</button>
+                                    {errors.name && <span className="text-red-500">*{errors.name}</span>}
+                                    {errors.email && <span className="text-red-500">*{errors.email}</span>}
+                                    {errors.phone && <span className="text-red-500">*{errors.phone}</span>}
+                                    {errors.message && <span className="text-red-500">*{errors.message}</span>}
                                 </Col>
                             </Row>
                         </form>
@@ -109,6 +153,18 @@ const Contact = () => {
                 </Row>
 
             </div>
+
+            <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+                <Modal.Header closeButton>
+                    <Modal.Title>Success</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Your message has been sent successfully!</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowModal(false)}>
+                        Close
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </Container>
     )
 }

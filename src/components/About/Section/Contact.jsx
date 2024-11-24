@@ -51,13 +51,19 @@ const Contact = () => {
                     <div className="buttons flex flex-col sm:flex-row justify-center gap-4">
                         <Button 
                             variant="outline-light"
-                            onClick={() => navigate('/projects')}
+                            onClick={() => {
+                                navigate('/projects');
+                                window.scrollTo(0, 0);
+                            }}
                         >
                             See the Latest Works
                         </Button>
                         <Button 
                             variant="outline-light"
-                            onClick={() => navigate('/contact')}
+                            onClick={() => {
+                                navigate('/contact');
+                                window.scrollTo(0, 0);
+                            }}
                         >
                             Contact Me
                         </Button>

@@ -3,7 +3,7 @@ import axios from "axios";
 const LOCAL = "http://localhost:3009/";
 const PUBLIC = process.env.REACT_APP_URL_BASE;
 
-const API = axios.create({ baseURL: LOCAL });
+const API = axios.create({ baseURL: PUBLIC });
 
 
 API.interceptors.request.use((req) => {

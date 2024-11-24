@@ -171,11 +171,6 @@ const Register = () => {
                             </button>
                             <div className="text-white text-center mt-3">
                                 <p>Already have an account ? <span className="text-[#DB4444] cursor-pointer" onClick={() => navigate('/login')}>Login</span></p>
-                                <p className="text-sm mt-2">
-                                    <span href="#" className="text-[#DB4444]">Terms & Conditions</span> |
-                                    <span href="#" className="text-[#DB4444]"> Support</span> |
-                                    <span href="#" className="text-[#DB4444]"> Care</span>
-                                </p>
                             </div>
                         </form>
                     </Col>

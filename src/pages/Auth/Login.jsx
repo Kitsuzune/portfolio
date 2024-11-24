@@ -118,11 +118,6 @@ const Login = () => {
                             <a href="/forgot" className="text-white d-flex justify-content-center pb-3 border-bottom">Forgot password ?</a>
                             <div className="text-white text-center mt-3">
                                 <p>Don't have an account ? <span className="text-[#DB4444] cursor-pointer" onClick={() => navigate('/register')}>Sign Up</span></p>
-                                <p className="text-sm mt-2">
-                                    <span href="#" className="text-[#DB4444]">Terms & Conditions</span> |
-                                    <span href="#" className="text-[#DB4444]"> Support</span> |
-                                    <span href="#" className="text-[#DB4444]"> Care</span>
-                                </p>
                             </div>
                         </form>
                     </Col>

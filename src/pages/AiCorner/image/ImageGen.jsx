@@ -22,7 +22,7 @@ const ImageGen = () => {
 
         try {
             const response = await axios.post(
-                'https://api-inference.huggingface.co/models/prompthero/openjourney',
+                'https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-3.5-large',
                 { inputs: fullPrompt },
                 {
                     headers: {

@@ -91,7 +91,7 @@ const Projects = () => {
                     // delay: index * 0.2, // Add a delay for staggered animation
                     scrollTrigger: {
                         trigger: card,
-                        markers: true,
+                        // markers: true,
                         start: "45% 90%",
                         end: "45% 70%",
                         scrub: 1

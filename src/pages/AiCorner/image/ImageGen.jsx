@@ -73,14 +73,16 @@ const ImageGen = () => {
                             />
                             <button
                                 onClick={handleGenerate}
-                                className="ml-4 p-3 bg-red-500 text-white rounded-lg transition duration-300 ease-in-out hover:bg-red-600"
+                                className={`ml-4 p-3 text-white rounded-lg transition duration-300 ease-in-out ${
+                                    loading ? 'bg-black' : 'bg-red-500 hover:bg-red-600'
+                                }`}
                                 disabled={loading}
                             >
                                 {loading ? 'Generating...' : 'Generate'}
                             </button>
                         </div>
                         <p className='text-gray-400 mt-3 inline-block'>
-                            *This is a free service provided by <a href='https://huggingface.co/' className='text-blue-500'>Hugging Face</a>
+                            *This Model Provided by Stability AI Stable Diffusion 3.5
                         </p>
                         <p className='text-red-400 inline-block'>
                             *If AI dont generate image, please try again for 1 minute. Because AI need to wake up first to save some memory.

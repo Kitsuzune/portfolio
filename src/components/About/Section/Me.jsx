@@ -117,7 +117,7 @@ const Me = () => {
             <div className='about-me-image block lg:absolute -top-20 lg:-top-40 left-0 lg:left-40 w-full lg:w-[450px] z-10 order-1 lg:order-none'>
                 <div className='lg:rounded-md lg:bg-gradient-to-r lg:from-orange-500 lg:via-red-500 lg:to-yellow-500 lg:p-1 lg:w-full h-full lg:shadow-lg'>
                     <img
-                        src="https://media-cgk1-2.cdn.whatsapp.net/v/t61.24694-24/425321522_2025544277867451_6281032931743553610_n.jpg?ccb=11-4&oh=01_Q5AaILE00sCGl63M0WXYV0yxGiOIt6dFWddvTC3CZXbV2geB&oe=674D30B5&_nc_sid=5e03e0&_nc_cat=100"
+                        src="https://media.licdn.com/dms/image/v2/D5603AQFqsSOLRKNjdg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718961962298?e=1738800000&v=beta&t=l0VdQizgPg57Irzw6upkALl-mqNE1DDbRXrN_fdZoVU"
                         alt="Profile"
                         className="first-letter:rounded-lg shadow-lg object-cover h-60 lg:h-[700px] w-full lg:w-auto"
                     />

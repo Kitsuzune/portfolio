@@ -3,6 +3,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import useBreadcrumbs from "use-react-router-breadcrumbs";
 import HeroIntro from '../components/About/HeroIntro';
 import TimelineSec from '../components/About/TimelineSec';
+import Intro3D from '../components/About/Intro3D';
 const About = () => {
     const breadcrumbs = useBreadcrumbs();
 
@@ -36,7 +37,6 @@ const About = () => {
             <div className="w-full flex justify-center items-center bg-[#0F0F0F]">
                 <HeroIntro />
             </div>
-
 
             <div className='w-full flex justify-center items-center'>
                 <TimelineSec />

@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Me from './Section/Me';
 import TechStack from './Section/TechStack';
 import Contact from './Section/Contact';
+import Intro3D from './Intro3D';
 
 
 const TimelineSec = () => {
@@ -15,17 +16,17 @@ const TimelineSec = () => {
 
         const tl1 = gsap.timeline();
         if (!isMobile) {
-        tl1.fromTo(
-            ".about-me-content",
-            { opacity: 0 },
-            {
-                scrollTrigger: {
-                    trigger: ".about-me-content",
-                    start: "top bottom",
-                    end: "top top",
-                    scrub: 1
-                },
-                opacity: 1,
+            tl1.fromTo(
+                ".about-me-content",
+                { opacity: 0 },
+                {
+                    scrollTrigger: {
+                        trigger: ".about-me-content",
+                        start: "top bottom",
+                        end: "top top",
+                        scrub: 1
+                    },
+                    opacity: 1,
                     duration: 1
                 }
             );
@@ -34,20 +35,20 @@ const TimelineSec = () => {
         let ctx = gsap.context(() => {
             const tl2 = gsap.timeline();
             if (!isMobile) {
-            tl2.to(
-                ".master-tl",
-                {
-                    scrollTrigger: {
-                        trigger: ".about-me-image",
-                        endTrigger: ".tech-stack",
-                        end: "10% bottom",
-                        scrub: true,
-                        pin: !isMobile ? ".about-me-image" : false,
-                        // pinSpacing: true,
-                        // markers: true,
-                    },
-                    zIndex: 10
-                }
+                tl2.to(
+                    ".master-tl",
+                    {
+                        scrollTrigger: {
+                            trigger: ".about-me-image",
+                            endTrigger: ".tech-stack",
+                            end: "10% bottom",
+                            scrub: true,
+                            pin: !isMobile ? ".about-me-image" : false,
+                            // pinSpacing: true,
+                            // markers: true,
+                        },
+                        zIndex: 10
+                    }
                 );
             }
 
@@ -91,17 +92,17 @@ const TimelineSec = () => {
             tl4.to(".contact-section", { clipPath: "circle(100% at 50% 50%)" }, "reveal");
 
             if (!isMobile) {
-            tl4.fromTo(
-                ".about-me-content",
-                { opacity: 0 },
-                {
-                    opacity: 1,
-                    scrollTrigger: {
-                        trigger: ".about-me-content",
-                        start: "top bottom",
-                        end: "top top",
-                        scrub: 1,
-                    },
+                tl4.fromTo(
+                    ".about-me-content",
+                    { opacity: 0 },
+                    {
+                        opacity: 1,
+                        scrollTrigger: {
+                            trigger: ".about-me-content",
+                            start: "top bottom",
+                            end: "top top",
+                            scrub: 1,
+                        },
                     }
                 );
             }
@@ -114,12 +115,21 @@ const TimelineSec = () => {
             <div className="w-full lg:w-[90%] flex flex-col lg:flex-row">
                 <Me />
             </div>
-            
+
             <div
                 className="w-full flex flex-col justify-center items-center bg-transparent z-20"
             >
                 <TechStack />
             </div>
+
+            <div className='w-full flex justify-center items-center '>
+                <div
+                    className="w-full flex flex-col justify-center items-center bg-transparent z-20"
+                >
+                    <Intro3D />
+                </div>
+            </div>
+
             <div
                 className="w-full flex flex-col justify-center items-center z-10 contact-section"
                 style={{

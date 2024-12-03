@@ -55,7 +55,7 @@ const HeroIntro = () => {
   }, []);
 
   return (
-    <div className="w-full md:w-[80%]">
+    <div className="w-full md:w-[80%] md:py-16">
       <Row className='pt-10 md:pt-20 pb-10 md:pb-20 mb-10 md:mb-20'>
         <Col md={6} className="flex items-center">
           <div className="text-white flex flex-col ml-2 md:ml-5">
